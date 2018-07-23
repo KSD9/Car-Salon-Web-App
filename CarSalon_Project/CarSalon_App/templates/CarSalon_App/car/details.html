@@ -1,0 +1,18 @@
+{% extends "../index.html" %}
+<body>
+{% block main %}
+
+    <p>model: {{car.model}}</p>
+    <p>year : {{car.year}}</p>
+    <p>color : {{car.color}}</p>
+    <p>price: {{car.price}}</p>
+    <p>quantity: {{car.quantity}}</p>
+    <p>hp : {{car.horsePowers}}</p>
+    <p>engine: {{car.engineType}}</p>
+    <p>top speed: {{car.topSpeed}}</p>
+    <p>0/100(km/s) :  {{car.zeroToHundredAcceleration}}</p>
+    <p>description :{{car.description}}</p>
+
+{% endblock main %}   
+</body>
+</html>

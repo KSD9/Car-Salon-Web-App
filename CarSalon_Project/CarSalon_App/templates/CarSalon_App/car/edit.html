@@ -1,0 +1,65 @@
+{% extends "../index.html" %}
+
+<body>
+{% block main %}
+
+    <form action="/car/edit/{{car.id}}" method="post">
+        <h1>Create New Student</h1>
+        
+        {% csrf_token %}
+        
+        <label for="name">Model:</label>
+        <div class="form-group">
+            <input type="text" id="model" name="model" value = "{{car.model}}"  required>
+        </div>
+        <label for="password">Year:</label>
+        <div class="form-group">
+            <input type="number" id="year" name="year" value = "{{car.year}}"  required>
+        </div>
+        <label for="password">Color:</label>
+        <div class="form-group">
+            <select name="dropdown_color">
+                
+                <option value="black">Black</option>
+                <option value="grey">Grey</option>
+            </select>
+        </div>
+        <label for="password">Price:</label>
+        <div class="form-group">
+            <input type="number" id="price" name="price" value = "{{car.price}}"  required>
+        </div>
+        <label for="password">Quantity:</label>
+        <div class="form-group">
+            <input type="number" id="quantity" name="quantity" value = "{{car.quantity}}"  required>
+        </div>
+        <label for="password">Horse Powers:</label>
+        <div class="form-group">
+            <input type="number" id="horsePowers" name="horsePowers" value = "{{car.horsePowers}}" required>
+        </div>
+        <label for="password">Engine Type:</label>
+        <div class="form-group">
+            <select name="dropdown_engineType">
+                
+                <option value="V12 Petrolium">V12 Petrolium</option>
+                <option value="V8D Diesel">V8 Disel</option>
+            </select>
+        </div>
+        <label for="password">Top Speed:</label>
+        <div class="form-group">
+            <input type="number" id="topSpeed" name="topSpeed" value = "{{car.topSpeed}}"  required>
+        </div>
+        <label for="password">0-100(km/h) Acceleration  :</label>
+        <div class="form-group">
+            <input type="number" id="zeroToHundredAcceleration" name="zeroToHundredAcceleration" value = "{{car.zeroToHundredAcceleration}}"  required>
+        </div>
+        <label for="password">Description  :</label>
+        <div class="form-group">
+            <input type="text" id="description" name="description" value = "{{car.description}}"  required>
+        </div>
+                <div class="form-group">
+                    <button type="submit" value="Create" class="btn-signin">Add</button>
+                </div>
+    </form>
+{% endblock main %}    
+    </body>
+    </html>

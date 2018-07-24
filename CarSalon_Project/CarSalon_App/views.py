@@ -3,6 +3,13 @@ from .templates.CarSalon_App.auth.registerForm import RegisterForm
 from django.contrib.auth.models import User
 from .models import CarAstMar,SoldCars,Appointment
 from django.shortcuts import get_list_or_404, get_object_or_404
+from .services.emailSender import send_appointment_email,send_info_email
+
+
+#Global variables used for email sending , and file paths
+adminEmail  = 'rushhourapp9@gmail.com'
+adminPass   = "!e123456789"
+
 
 
 def application_index(request):
@@ -125,9 +132,16 @@ def create_appointment(request,id):
         car = get_object_or_404(CarAstMar,id = id)
         appointment = Appointment(startDate = request.POST['startDate'],userId = request.user , carId = car )
         appointment.save()
+        
+        emailText = str(Appointment.objects.get(id = 2))
+        send_appointment_email(adminEmail,adminPass,'evtimov9@gmail.com','New Appointment',emailText)
         return redirect('/index')
 
 def  view_all_appointments(request):
     appoinments = Appointment.objects.all()
     context = {'appointments':appoinments}
     return render (request,'CarSalon_App/appointment/index.html',context)
+
+def receive_email_from_user(request):
+    send_info_email(request.POST['email'],request.POST['name'],request.POST['body'])
+    return redirect('/index')   

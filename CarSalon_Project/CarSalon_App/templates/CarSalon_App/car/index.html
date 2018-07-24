@@ -14,7 +14,9 @@
         <p>top speed: {{car.topSpeed}}</p>
         <p>0/100(km/s) :  {{car.zeroToHundredAcceleration}}</p>
         <p>description :{{car.description}}</p>
+        <a href="/car/details/{{car.id}}"> Details</a>
     {%endfor%}
+    <a href="/car/create">Add New Car</a>
 {% endblock main %}
 </body>
 </html>

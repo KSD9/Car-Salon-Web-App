@@ -9,91 +9,55 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
     </head>
-    <style>
-            body {font-family: Arial, Helvetica, sans-serif;}
-            
-            /* The Modal (background) */
-            .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
-                padding-top: 100px; /* Location of the box */
-                left: 0;
-                top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            }
-            
-            /* Modal Content */
-            .modal-content {
-                background-color: #fefefe;
-                margin: auto;
-                padding: 20px;
-                border: 1px solid #888;
-                width: 80%;
-            }
-            
-            /* The Close Button */
-            .close {
-                color: #aaaaaa;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-            }
-            
-            .close:hover,
-            .close:focus {
-                color: #000;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-            .modal2 {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
-                padding-top: 100px; /* Location of the box */
-                left: 0;
-                top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            }
-            
-            /* Modal Content */
-            .modal2-content {
-                background-color: #b42b2b;
-                margin: auto;
-                padding: 20px;
-                border: 1px solid #888;
-                width: 80%;
-            }
-            
-            /* The Close Button */
-            .close2 {
-                color: #aaaaaa;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-            }
-            
-            .close2:hover,
-            .close2:focus {
-                color: #000;
-                text-decoration: none;
-                cursor: pointer;
-            }
-            </style>
+  
 {% endblock head %}
+{% block header %}
 
+<header>
+    <nav>
+        <ul>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/index">Home</a></li>
+            <li><a href="/users">Users</a></li>
+            <li><a href="/car/index">Cars</a></li>
+            <li><a href="/car/sold">Sold Cars</a></li>
+            <li><a href="/appointment/index">Appointments</a></li>
+           
+        </ul>
+    </nav>
+</header>
+
+
+
+{% endblock header %}
 <body>
 {% block main %}
-        <p>Hello To my App</p>
+<section>
+        <form action="/index/sendEmail" method="post">
+            <h1>Ask Question</h1>
+            
+            {% csrf_token %}
+            
+            <label for="name">Email:</label>
+            <div class="form-group">
+                <input type="email" id="email" name="email" required>
+            </div>
+            <label for="password">Name:</label>
+            <div class="form-group">
+                <input type="text" id="name" name="name" required>
+            </div>
+            <label for="password">Message :</label>
+            <div class="form-group">
+                <input type="text" id="body" name="body" required>
+            </div>
+        
+            <div class="form-group">
+                <button type="submit" value="Create" class="btn-signin">Add</button>
+            </div>
+        </form>
+</section>
+        
         
 {% endblock main %}
 {% block scripts %}

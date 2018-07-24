@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .templates.CarSalon_App.auth.registerForm import RegisterForm 
 from django.contrib.auth.models import User
-from .models import CarAstMar 
+from .models import CarAstMar,SoldCars,Appointments
 
 
 def application_index(request):
@@ -94,3 +94,14 @@ def delete_car(request,id):
     carToDelete = CarAstMar.objects.get(id = id)
     carToDelete.delete()
     return redirect('/index')
+
+
+def sell_car(request,id):
+    car = CarAstMar.objects.get(id = id)
+    initialCarQuantity = car.quantity
+
+    soldCar = SoldCars (carId = car, quantity = 4)
+    soldCar.save()
+    car.quantity = initialCarQuantity - soldCar.quantity
+    car.save()
+    

@@ -25,55 +25,56 @@
 
   
 
+    
+{% if user.is_authenticated %}
+
     <button id="btnTestDrive">Book Test Drive</button>
+
+    <div id="mTestDrive" class="modalTestDrive">
+        <div class="modalTestDrive-content">
+            <span class="closeTestDrive">&times;</span>
+            <form action="/appointment/create/{{car.id}}" method="post">
+                <h1>Book Test Drive</h1>
+                
+                {% csrf_token %}
+                
+                <label for="name">Start Date:</label>
+                <div class="form-group">
+                    <input type="datetime" id="startDate" name="startDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" value="Create" class="btn-signin">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{%endif%}
+
+{% if user.is_superuser %}
+
     <button id="btnSellCar">Sell Car</button>
-
-<!-- The Modal -->
-<div id="mTestDrive" class="modalTestDrive">
-
-  <!-- Modal content -->
-  <div class="modalTestDrive-content">
-    <span class="closeTestDrive">&times;</span>
-    <form action="/appointment/create/{{car.id}}" method="post">
-        <h1>Create New Appointmnet</h1>
-        
-        {% csrf_token %}
-        
-        <label for="name">Start Date:</label>
-        <div class="form-group">
-            <input type="datetime" id="startDate" name="startDate" required>
-        </div>
-        
-        <div class="form-group">
-            <button type="submit" value="Create" class="btn-signin">Add</button>
-        </div>
-    </form>
-  </div>
-
-</div>
-
-<div id="mSellCar" class="modalSellCar">
-
-        <!-- Modal content -->
+    
+    <div id="mSellCar" class="modalSellCar">
         <div class="modalSellCar-content">
-          <span class="closeSellCar">&times;</span>
-          <form action="/car/sell/{{car.id}}" method="post">
-              <h1>Sell Carr</h1>
-              
-              {% csrf_token %}
-              
-              <label for="name">Quantity</label>
-              <div class="form-group">
-                  <input type="number" id="quantity" name="quantity" required>
-              </div>
-              
-              <div class="form-group">
-                  <button type="submit" value="Create" class="btn-signin">Add</button>
-              </div>
-          </form>
+            <span class="closeSellCar">&times;</span>
+            <form action="/car/sell/{{car.id}}" method="post">
+                <h1>Sell Carr</h1>
+                
+                {% csrf_token %}
+                
+                <label for="name">Quantity</label>
+                <div class="form-group">
+                    <input type="number" id="quantity" name="quantity" required>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" value="Create" class="btn-signin">Add</button>
+                </div>
+            </form>
         </div>
-      
-      </div>
+    </div>
+{%endif%}
 
 {% endblock main %}   
 {% block scripts %}

@@ -16,13 +16,26 @@
 <header>
     <nav>
         <ul>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="/index">Home</a></li>
-            <li><a href="/users">Users</a></li>
-            <li><a href="/car/index">Cars</a></li>
-            <li><a href="/car/sold">Sold Cars</a></li>
-            <li><a href="/appointment/index">Appointments</a></li>
+            {% if user.is_superuser %}
+                    <li><a href="/users">Users</a></li>
+                    <li><a href="/appointment/index">Appointments</a></li>
+                    <li><a href="/car/sold">Sold Cars</a></li>
+            {%endif%}
+
+            {% if user.is_authenticated %}
+                <li><a href="/index">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="/car/index">Cars</a></li>
+                <li><a href="/logout">Log out</a></li>
+
+
+            {% else %} 
+                <li><a href="/index">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/index#about">About</a></li>
+                <li><a href="/car/index">Cars</a></li>
+            {% endif %}
            
         </ul>
     </nav>
@@ -33,7 +46,7 @@
 {% endblock header %}
 <body>
 {% block main %}
-<section>
+<section id ="about">
         <form action="/index/sendEmail" method="post">
             <h1>Ask Question</h1>
             

@@ -4,6 +4,8 @@
 {% block main %}
         
     {%for car in cars%}
+    <br>
+        <img src="{{car.image}}" width="400" height="400">
         <p>model: {{car.model}}</p>
         <p>year : {{car.year}}</p>
         <p>color : {{car.color}}</p>
@@ -14,9 +16,14 @@
         <p>top speed: {{car.topSpeed}}</p>
         <p>0/100(km/s) :  {{car.zeroToHundredAcceleration}}</p>
         <p>description :{{car.description}}</p>
+        
         <a href="/car/details/{{car.id}}"> Details</a>
+        <br>
     {%endfor%}
+        
+{% if user.is_superuser %}
     <a href="/car/create">Add New Car</a>
+{%endif%}    
 {% endblock main %}
 </body>
 </html>

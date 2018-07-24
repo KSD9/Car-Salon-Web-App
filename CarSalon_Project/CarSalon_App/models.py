@@ -13,7 +13,9 @@ class CarAstMar(models.Model):
     engineType                = models.CharField(max_length = 200)
     topSpeed                  = models.PositiveIntegerField()
     zeroToHundredAcceleration = models.PositiveIntegerField()
+    image                     = models.ImageField()
     description               = models.CharField(max_length = 300)
+
 
 class Appointment(models.Model):
     objects                   = models.Manager()

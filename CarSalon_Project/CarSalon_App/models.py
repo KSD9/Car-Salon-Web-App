@@ -15,12 +15,14 @@ class CarAstMar(models.Model):
     zeroToHundredAcceleration = models.PositiveIntegerField()
     description               = models.CharField(max_length = 300)
 
-class Appointments(models.Model):
+class Appointment(models.Model):
+    objects                   = models.Manager()
     startDate                 = models.DateTimeField()
     userId                    = models.ForeignKey (User,on_delete=models.CASCADE , related_name="cars")
     carId                     = models.ForeignKey (CarAstMar,on_delete=models.CASCADE , related_name="users")
 
 
 class SoldCars(models.Model):
+    objects                   = models.Manager()
     carId                     = models.ForeignKey (CarAstMar,on_delete=models.CASCADE , related_name="cars")
     quantity                  = models.PositiveIntegerField()    

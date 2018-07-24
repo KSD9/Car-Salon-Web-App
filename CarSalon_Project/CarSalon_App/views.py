@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from .templates.CarSalon_App.auth.registerForm import RegisterForm 
 from django.contrib.auth.models import User
-from .models import CarAstMar,SoldCars,Appointments
+from .models import CarAstMar,SoldCars,Appointment
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 
 def application_index(request):
@@ -67,7 +68,7 @@ def details_car(request,id):
     return render (request,'CarSalon_App/car/details.html',context)
 
 def edit_car(request,id):
-    carToEdit = CarAstMar.objects.get (id = id)
+    carToEdit = get_object_or_404(CarAstMar,id = id)
     context = {'car':carToEdit}
     if request.method == 'POST':
         carToEdit.model = request.POST['model']
@@ -85,23 +86,48 @@ def edit_car(request,id):
     return render (request,'CarSalon_App/car/edit.html',context)
 
 def delete_car_confirmation(request,id):
-    carToDelete = CarAstMar.objects.get (id = id)
+    carToDelete = get_object_or_404(CarAstMar,id = id)
     context = {'car':carToDelete}
     return render (request,'CarSalon_App/car/delete.html',context)
 
 
 def delete_car(request,id):
-    carToDelete = CarAstMar.objects.get(id = id)
+    carToDelete = get_object_or_404(CarAstMar,id = id)
     carToDelete.delete()
     return redirect('/index')
 
 
 def sell_car(request,id):
-    car = CarAstMar.objects.get(id = id)
-    initialCarQuantity = car.quantity
+    if request.method == 'POST':
+        car = get_object_or_404(CarAstMar,id = id)
 
-    soldCar = SoldCars (carId = car, quantity = 4)
-    soldCar.save()
-    car.quantity = initialCarQuantity - soldCar.quantity
-    car.save()
+        initialCarQuantity = car.quantity
+
+        soldCar = SoldCars (carId = car, quantity = int(request.POST['quantity']) )
+
+        if initialCarQuantity >= 0 and initialCarQuantity >= soldCar.quantity:
+
+            soldCar.save()
+            car.quantity = initialCarQuantity - soldCar.quantity
+            car.save()
+            return redirect('/car/sold')
     
+def view_all_sold_cars(request):
+    cars = SoldCars.objects.all()
+    context = {'cars':cars}
+    return render (request,'CarSalon_App/car/soldCars.html',context)
+
+
+
+def create_appointment(request,id):
+
+     if request.method == 'POST':
+        car = get_object_or_404(CarAstMar,id = id)
+        appointment = Appointment(startDate = request.POST['startDate'],userId = request.user , carId = car )
+        appointment.save()
+        return redirect('/index')
+
+def  view_all_appointments(request):
+    appoinments = Appointment.objects.all()
+    context = {'appointments':appoinments}
+    return render (request,'CarSalon_App/appointment/index.html',context)

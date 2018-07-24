@@ -1,0 +1,14 @@
+{% extends "../index.html" %}
+<body>
+
+{% block main %}
+
+{%for car in cars%}
+<p>{{car.carId.model}}</p>
+<p>{{car.quantity}}</p>
+{%endfor%}
+    
+{% endblock main %}   
+
+</body>
+</html>

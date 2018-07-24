@@ -1,0 +1,13 @@
+{% extends "../index.html" %}
+
+<body>
+{% block main %}
+
+  {%for appointment in appointments%}
+  <p>{{appointment.startDate}}</p>
+  <p>{{appointment.userId.username}}</p>
+  <p>{{appointment.carId.model}}</p>
+  {%endfor%}
+{% endblock main %}
+</body>
+</html>

@@ -23,4 +23,8 @@ urlpatterns = [
     path('car/delete/<id>',        views.delete_car,                name="deleteCar"),
     path('car/index',              views.view_all_cars,             name="cars"),
     path('car/sell/<id>',views.sell_car,name="sellCar"),
+    path('car/sold',views.view_all_sold_cars,name="soldCars"),
+    path('appointment/create/<id>',views.create_appointment,name="appCreate"),
+    path('appointment/index',views.view_all_appointments,name="appIndex")
+
 ]

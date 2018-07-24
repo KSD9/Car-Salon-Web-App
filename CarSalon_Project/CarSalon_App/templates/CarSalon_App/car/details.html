@@ -1,18 +1,134 @@
 {% extends "../index.html" %}
+{% block head %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/modalForms.css">
+{% endblock head %}
 <body>
+
 {% block main %}
 
-    <p>model: {{car.model}}</p>
-    <p>year : {{car.year}}</p>
-    <p>color : {{car.color}}</p>
-    <p>price: {{car.price}}</p>
-    <p>quantity: {{car.quantity}}</p>
-    <p>hp : {{car.horsePowers}}</p>
-    <p>engine: {{car.engineType}}</p>
-    <p>top speed: {{car.topSpeed}}</p>
+    <p>Model: {{car.model}}</p>
+    <p>Year : {{car.year}}</p>
+    <p>Color : {{car.color}}</p>
+    <p>Price: {{car.price}}</p>
+    <p>Quantity: {{car.quantity}}</p>
+    <p>Hp : {{car.horsePowers}}</p>
+    <p>Engine: {{car.engineType}}</p>
+    <p>Top speed: {{car.topSpeed}}</p>
     <p>0/100(km/s) :  {{car.zeroToHundredAcceleration}}</p>
-    <p>description :{{car.description}}</p>
+    <p>Description :{{car.description}}</p>
+
+  
+
+    <button id="btnTestDrive">Book Test Drive</button>
+    <button id="btnSellCar">Sell Car</button>
+
+<!-- The Modal -->
+<div id="mTestDrive" class="modalTestDrive">
+
+  <!-- Modal content -->
+  <div class="modalTestDrive-content">
+    <span class="closeTestDrive">&times;</span>
+    <form action="/appointment/create/{{car.id}}" method="post">
+        <h1>Create New Appointmnet</h1>
+        
+        {% csrf_token %}
+        
+        <label for="name">Start Date:</label>
+        <div class="form-group">
+            <input type="datetime" id="startDate" name="startDate" required>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit" value="Create" class="btn-signin">Add</button>
+        </div>
+    </form>
+  </div>
+
+</div>
+
+<div id="mSellCar" class="modalSellCar">
+
+        <!-- Modal content -->
+        <div class="modalSellCar-content">
+          <span class="closeSellCar">&times;</span>
+          <form action="/car/sell/{{car.id}}" method="post">
+              <h1>Sell Carr</h1>
+              
+              {% csrf_token %}
+              
+              <label for="name">Quantity</label>
+              <div class="form-group">
+                  <input type="number" id="quantity" name="quantity" required>
+              </div>
+              
+              <div class="form-group">
+                  <button type="submit" value="Create" class="btn-signin">Add</button>
+              </div>
+          </form>
+        </div>
+      
+      </div>
 
 {% endblock main %}   
+{% block scripts %}
+<script>
+        // Get the modal
+        var modalTestDrive = document.getElementById('mTestDrive');
+        
+        // Get the button that opens the modal
+        var btnTestDrive = document.getElementById("btnTestDrive");
+        
+        // Get the <span> element that closes the modal
+        var spanTestDrive = document.getElementsByClassName("closeTestDrive")[0];
+        
+        // When the user clicks the button, open the modal 
+        btnTestDrive.onclick = function() {
+            modalTestDrive.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        spanTestDrive.onclick = function() {
+            modalTestDrive.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+       
+        // Get the modal
+        var modalSellCar = document.getElementById('mSellCar');
+        
+        // Get the button that opens the modal
+        var btnSellCar = document.getElementById("btnSellCar");
+        
+        // Get the <span> element that closes the modal
+        var spanSellCar = document.getElementsByClassName("closeSellCar")[0];
+        
+        // When the user clicks the button, open the modal 
+        btnSellCar.onclick = function() {
+            modalSellCar.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        spanSellCar.onclick = function() {
+            modalSellCar.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modalSellCar || event.target == modalTestDrive) {
+                modalSellCar.style.display = "none";
+                modalTestDrive.style.display = "none";
+            }
+        }
+
+
+        </script>
+    
+{% endblock scripts %}
 </body>
 </html>

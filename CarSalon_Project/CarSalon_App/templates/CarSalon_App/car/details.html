@@ -8,10 +8,20 @@
     </head>
     <link rel="stylesheet" type="text/css" href="../../../static/css/modalForms.css">
     <link rel="stylesheet" type="text/css" href="../../../static/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <link rel="stylesheet" href="../../../static/css/bootstrap-datetimepicker.css" />
 {% endblock head %}
 <body>
 
 {% block main %}
+
+{% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+  
     <br>
     <img src="{{car.image}}" width="400" height="400">
     <p>Model: {{car.model}}</p>
@@ -91,12 +101,21 @@
 
 {% endblock main %}   
 {% block scripts %}
-<script src="../../../static/js/jquery.js"></script>
-
+<script type="text/javascript" src="../../../static/js/jquery.js"></script>
+<script type="text/javascript" src="../../../static/js/moment.min.js"></script>
+<script type="text/javascript" src="../../../static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../static/js/bootstrap-datetimepicker.js"></script>
 
 <script type="text/javascript" src="../../../static/fancybox/source/jquery.fancybox.js?v=2.1.5"></script>
 <script>
         $(document).ready(function() {
+
+            $('#startDate').datetimepicker({
+                defaultDate: new Date(),
+                format: 'YYYY-MM-DD HH:mm',
+                ignoreReadonly: true,
+            
+            });
 
 			$('.fancybox').fancybox();
 		$(".fancybox-effects-a").fancybox({

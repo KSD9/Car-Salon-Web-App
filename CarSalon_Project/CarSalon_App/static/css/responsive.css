@@ -1,0 +1,138 @@
+/* Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+
+
+
+/* Breakpoints
+----------------------------------------------------------------------------------------------------*/
+
+/* All except large Screens */
+@media (max-width: 1220px) {
+}
+
+/* Only Phones and Tablets (Portrait) */
+@media (max-width: 959px) {
+.itemServiceView.itemView span.itemImage img, .itemServiceView.catItemBlog span.catItemImage img { width: 100% !important; }
+div.itemView span.itemImage { margin: 0 0 0 0; }
+.catItemBlog .item-media-blog { top: 0px !important; left: 0px !important; }
+.itemBlogView .item-media-blog { top: 40px; left: 0px; }
+.catItemBlog .catItemDateCreated, .itemBlogView .ItemDateCreated { border-radius: 0 0 30px 0; opacity: .5; }
+.itemImageBlock { margin-right: 15px !important; margin-bottom: 15px !important; }
+}
+
+/* Only Tablets (Portrait) */
+@media (min-width: 768px) and (max-width: 959px) {
+}
+
+/* Only Tablets (Portrait) and Phones (Landscape) */
+@media (min-width: 480px) and (max-width: 959px) {
+/* Layout */
+
+.block-img-shadow img { height: auto !important; width: 100% !important; }
+.nspCol5 { width: 33.332%; }
+.nspCol6 {
+  width: 33.332%;
+}
+.nspCol4 { width: 50%; }
+.home-service .nspArt div, .home-staff .nspArt div  { float: none; overflow: visible; text-align: center; }
+.home-service .nspImageWrapper, .home-staff .nspImageWrapper { display: block; float: none; }
+.nspImageWrapper { margin-right: 15px !important; }
+}
+
+/* Only Phones */
+@media (max-width: 767px) {
+/* Layout */
+#toolbar, #headerbar, #menubar, #breadcrumbs, #totop-scroller { display: none; }
+.aptext { text-align: center; }
+div.appointment .aptext h2 { float: none; margin: 0 0 15px; text-align: center; }
+div.appointment .apbutton { float: none; }
+.itemContainer { width: 100% !important; }
+.catItemBlog span.catItemImage img { width: 100% !important; }
+.itemListBlog .itemContainer { margin-bottom: 5px; padding-bottom: 20px; }
+div.itemCommentsForm form textarea.inputbox {
+  width: 100%;
+}
+#header-responsive {
+  text-align: center;
+}
+#header-responsive .logo {
+	margin: 0 0 15px 0 !important;
+	width: auto !important;
+  
+}
+.menu-responsive {
+	margin-bottom: 20px;
+}
+
+#search { display: none; }
+.one-third .box.with-header .text.huge {
+font-size: 2.5em;
+}
+.button.big    { font-size: 1em; padding: 5px 10px; }
+.button.bigger { font-size: 1.2em; padding: 6px 15px; }
+}
+
+/* Only Phones (Landscape) */
+@media (min-width: 480px) and (max-width: 767px) {
+.itemContainer div.catItemView.catItemViewBlog { float: left !important; margin-left: 2%; width: 60% !important; }
+.catItemBlog { float: left; width: 35%; }
+}
+
+/* Only Phones (Portrait) */
+@media (max-width: 479px) {
+/* System */
+#system .items .item, #system .items .item:first-child { margin-top: 12px; padding-top: 18px; border-top-width: 1px; }
+#system .items :first-child .item:first-child { margin-top: 0; padding-top: 0; border-width: 0; }
+#system .items .leading .item { margin-bottom: 0; padding-bottom: 0; border-width: 0; }
+.block-img-shadow img { height: auto !important; width: 100% !important; }
+.nspTopInterface { display: none; }
+.nspCol5, .nspCol4, .nspCol3 { width: 100%; }
+.home-service .nspArt div, .home-staff .nspArt div { float: none; overflow: visible; padding: 10px 10% 0; text-align: center; }
+.home-service .nspImageWrapper, .home-staff .nspImageWrapper { display: block; float: none; }
+.aptext { text-align: center; }
+div.appointment .aptext h2 { float: none; margin: 0 0 15px; text-align: center; }
+div.appointment .apbutton { float: none; }
+.itemContainer div.catItemView.catItemViewBlog { float: left !important; margin-left: 0px !important; width: 100% !important; }
+.grid-1, .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .grid-7, .grid-8, .grid-9, .grid-10, .grid-11, .grid-12 { display: inline; float: left; position: relative; margin-left: 0%; margin-right: 0%; }
+.grid-1, .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .grid-7, .grid-8, .grid-9, .grid-10, .grid-11, .grid-12 { width: 100%; }
+.moduletableservice .nspArt p.nspText, .moduletablestaffprofile .nspArt p.nspText { display: block; float: left; width: 100%; }
+.nspPages3 { width: 100%; }
+.moduletableservice .nspImageWrapper, .moduletablestaffprofile .nspImageWrapper { display: block; }
+.moduletableservice, .moduletablestaffprofile { margin-top: -27px; }
+.catItemBlog { width: 100% !important; }
+.catItemBlog span.catItemImage { display: block; }
+.itemImageBlock { width: 100%; display: block; }
+.itemBlogView.itemView span.itemImage img { width: 100% !important; }
+div.viewitemllink, div.itemAuthorBlock {
+	width: 100%;
+	}
+.one-half,
+.one-third,
+.two-third,
+.three-fourth,
+.one-fourth,
+.one-fifth,
+.two-fifth,
+.three-fifth,
+.four-fifth,
+.one-sixth,
+.two-sixth,
+.three-sixth,
+.four-sixth,
+.five-sixth {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.wk-slideshow .nav, .wk-slideshow .caption {
+	display: none !important;
+	}
+	
+#search {display: none; }
+
+
+#top-a .mod-box {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+}

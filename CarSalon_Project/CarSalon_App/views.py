@@ -5,6 +5,8 @@ from .models import CarAstMar,SoldCars,Appointment
 from django.shortcuts import get_list_or_404, get_object_or_404
 from .services.emailSender import send_appointment_email,send_info_email
 from django.contrib.auth.decorators import login_required , user_passes_test
+from django.contrib import messages
+from django.http import HttpResponse , HttpResponseRedirect
 
 # Custom Decorator To Check If Logged User Has Admin Rights
 def superuser_required(view_func=None, login_url='/index'):
@@ -18,6 +20,7 @@ def superuser_required(view_func=None, login_url='/index'):
     return actual_decorator
 
 def application_index(request):
+    
     return render(request,'../templates/CarSalon_App/index.html')
 
 def register(request):
@@ -117,19 +120,28 @@ def delete_car(request,id):
 
 @superuser_required
 def sell_car(request,id):
+   
     if request.method == 'POST':
-        car = get_object_or_404(CarAstMar,id = id)
+        try:
+            
+            car = get_object_or_404(CarAstMar,id = id)
 
-        initialCarQuantity = car.quantity
+            initialCarQuantity = car.quantity
 
-        soldCar = SoldCars (carId = car, quantity = int(request.POST['quantity']) )
+            soldCar = SoldCars (carId = car, quantity = int(request.POST['quantity']) )
 
-        if initialCarQuantity >= 0 and initialCarQuantity >= soldCar.quantity:
+            if initialCarQuantity >= 0 and initialCarQuantity >= soldCar.quantity:
 
-            soldCar.save()
-            car.quantity = initialCarQuantity - soldCar.quantity
-            car.save()
-            return redirect('/car/sold')
+                soldCar.save()
+                car.quantity = initialCarQuantity - soldCar.quantity
+                car.save()
+                return redirect('/car/sold')
+            else:
+                messages.add_message(request, messages.INFO, 'Not Enough Amount .')
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))   
+        except Exception:
+            messages.add_message(request, messages.INFO, 'Please Enter Valid Date .')
+            return redirect('car/index') 
     
 @superuser_required    
 def view_all_sold_cars(request):
@@ -150,7 +162,12 @@ def create_appointment(request,id):
         appointment = Appointment(startDate = request.POST['startDate'],userId = request.user , carId = car )
         appointment.save()
         
-        emailText = str(Appointment.objects.get(id = 2))
+      
+        app = appointment.carId.model
+        user = appointment.userId.first_name
+        date = str(request.POST['startDate'])
+        emailText = 'Hello '+ user + ' ,You have booked a test drive for : '+  date + 'To try Aston Martin: '+ app
+
         send_appointment_email(adminEmail,adminPass,'evtimov9@gmail.com','New Appointment',emailText)
         return redirect('/index')
 

@@ -3,49 +3,363 @@
 {% block head %}
     
 
-    <head>
+<head>
+
+        <title>Aston Martin Salon</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-    </head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        
+        <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../static/css/animate.css">
+        <link rel="stylesheet" href="../../static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../static/css/owl.theme.css">
+        <link rel="stylesheet" href="../../static/css/owl.carousel.css">
+        
+        <!-- Main css -->
+        <link rel="stylesheet" href="../../static/css/style.css">
+        
+        <!-- Google Font -->
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lora:700italic' rel='stylesheet' type='text/css'>
+        
+        </head>
   
 {% endblock head %}
 {% block header %}
 
 <header>
-    <nav>
-        <ul>
-            {% if user.is_superuser %}
-                    <li><a href="/users">Users</a></li>
-                    <li><a href="/appointment/index">Appointments</a></li>
-                    <li><a href="/car/sold">Sold Cars</a></li>
-            {%endif%}
 
-            {% if user.is_authenticated %}
-                <li><a href="/index">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="/car/index">Cars</a></li>
-                <li><a href="/logout">Log out</a></li>
-
-
-            {% else %} 
-                <li><a href="/index">Home</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/index#about">About</a></li>
-                <li><a href="/car/index">Cars</a></li>
-            {% endif %}
-           
-        </ul>
-    </nav>
+    <!-- =========================
+    NAVIGATION SECTION   
+============================== -->
+<div class="navbar navbar-default navbar-fixed-top sticky-navigation" role="navigation">
+        <div class="container">
+    
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">Aston Martin Salon</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right main-navigation">
+                        {% if user.is_superuser %}
+                        <li><a href="/users" class="smoothScroll" >Users</a></li>
+                        <li><a href="/appointment/index" class="smoothScroll" >Appointments</a></li>
+                        <li><a href="/car/sold" class="smoothScroll" >Sold Cars</a></li>
+                {%endif%}
+    
+                {% if user.is_authenticated %}
+                    <li><a href="/index" class="smoothScroll">Home</a></li>
+                    <li><a href="#about" class="smoothScroll">About</a></li>
+                    <li><a href="/car/index" class="smoothScroll" >Cars</a></li>
+                    <li><a href="/logout" class="smoothScroll">Log out</a></li>
+    
+    
+                {% else %} 
+                    <li><a href="/index" class="smoothScroll">Home</a></li>
+                    <li><a href="/car/index" class="smoothScroll" >Cars</a></li>
+                    <li><a href="/index#about" class="smoothScroll" >About</a></li>
+                    <li><a href="/login" class="smoothScroll" >Login</a></li>
+                    <li><a href="/register" class="smoothScroll" >Register</a></li>
+                {% endif %}
+               
+                </ul>
+            </div>
+    
+        </div>
+    </div>
+    
 </header>
 
 
 
 {% endblock header %}
-<body>
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 {% block main %}
+
+<!-- =========================
+    HOME SECTION   
+============================== -->
+<section id="home" class="parallax-section">
+        <div class="container">
+            <div class="row">
+    
+                <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    <h3 class="wow bounceIn" data-wow-delay="0.9s">Welcome To </h3>
+                    <h1 class="wow fadeInUp" data-wow-delay="1.6s">Aston Martin Car Salon</h1>
+                    <a href="#overview" class="wow fadeInUp smoothScroll btn btn-default" data-wow-delay="2s">Learn More</a>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- =========================
+        OVERVIEW SECTION   
+    ============================== -->
+    <section id="overview" class="parallax-section">
+        <div class="container">
+            <div class="row">
+    
+                <div class="col-md-6 col-sm-12">
+                  
+                    <iframe width="560" height="450" src="https://www.youtube.com/embed/zN8DGSswGDo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      
+     
+                </div>
+    
+                <div class="col-md-1"></div>
+    
+                <div class="wow fadeInUp col-md-4 col-sm-12" data-wow-delay="1s">
+                    <div class="overview-detail">
+                        <h2>Aston Martin</h2>
+                        <p>Aston Martin a British luxury sport car and grand tourers. It was founded in 1913 by Lionel Martin and Robert Bamford</p>
+                        <p>AM is recognised everywhere in the world. It's a symbol of class and respect. Our salon is proud to deliver each model of AM's brand. If you want to find more about AM , check <a href="https://global.astonmartin.com/">Their Official Page</a>.</p>
+                        <a href="#trainer" class="btn btn-default smoothScroll">See More</a>
+                    </div>
+                </div>
+    
+                <div class="col-md-1"></div>
+    
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- =========================
+        TRAINER SECTION   
+    ============================== -->
+    <section id="trainer" class="parallax-section">
+        <div class="container">
+            <div class="row">
+    
+                <div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="0.3s">
+                    <h2>Our Models</h2>
+                    <p>Symbol of wealth , class and respect.</p>
+                </div>
+                <a href="/car/index">
+                    <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
+                        <div class="trainer-thumb">
+                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                                <div class="trainer-overlay">
+                                    <div class="trainer-des">
+                                        <h2>DBS Volante</h2>
+                                        <h3>V12 Tubo </h3>
+                                        
+                                    </div>
+                                </div>
+                        </div>
+                        <p>Simple The Best !</p>
+                    </div>
+                </a>
+                <a href="/car/index">
+                    <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
+                        <div class="trainer-thumb">
+                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                                <div class="trainer-overlay">
+                                    <div class="trainer-des">
+                                        <h2>DBS Volante</h2>
+                                        <h3>V12 Tubo </h3>
+                                        
+                                    </div>
+                                </div>
+                        </div>
+                        <p>Simple The Best !</p>
+                    </div>
+                </a>
+                <a href="/car/index">
+                    <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
+                        <div class="trainer-thumb">
+                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                                <div class="trainer-overlay">
+                                    <div class="trainer-des">
+                                        <h2>DBS Volante</h2>
+                                        <h3>V12 Tubo </h3>
+                                        
+                                    </div>
+                                </div>
+                        </div>
+                        <p>Simple The Best !</p>
+                    </div>
+                </a>
+                <a href="/car/index">
+                    <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
+                        <div class="trainer-thumb">
+                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                                <div class="trainer-overlay">
+                                    <div class="trainer-des">
+                                        <h2>DBS Volante</h2>
+                                        <h3>V12 Tubo </h3>
+                                        
+                                    </div>
+                                </div>
+                        </div>
+                        <p>Simple The Best !</p>
+                    </div>
+                </a>
+                <a href="/car/index">
+                    <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
+                        <div class="trainer-thumb">
+                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                                <div class="trainer-overlay">
+                                    <div class="trainer-des">
+                                        <h2>DBS Volante</h2>
+                                        <h3>V12 Tubo </h3>
+                                        
+                                    </div>
+                                </div>
+                        </div>
+                        <p>Simple The Best !</p>
+                    </div>
+                </a>
+                <a href="/car/index">
+                    <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
+                        <div class="trainer-thumb">
+                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                                <div class="trainer-overlay">
+                                    <div class="trainer-des">
+                                        <h2>DBS Volante</h2>
+                                        <h3>V12 Tubo </h3>
+                                        
+                                    </div>
+                                </div>
+                        </div>
+                        <p>Simple The Best !</p>
+                    </div>
+                </a>
+
+                  
+                
+    
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- =========================
+        NEWSLETTER SECTION   
+    ============================== -->
+    
+    
+    
+    
+    
+    
+    <!-- =========================
+        PRICE SECTION   
+    ============================== -->
+   
+    
+    
+    <!-- =========================
+        TESTIMONIAL SECTION   
+    ============================== -->
+    <section id="testimonial" class="parallax-section">
+        <div class="container">
+            <div class="row">
+    
+                <!-- Testimonial Owl Carousel section
+                ================================================== -->
+                <div id="owl-testimonial" class="owl-carousel">
+    
+                    <div class="item col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 wow fadeInUp" data-wow-delay="0.6s">
+                        <i class="fa fa-quote-left"></i>
+                        <h3>Прекрасно обслужване ! Прекрасен персонал ! Приятелско посрещане !</h3>
+                        <h4>Ивайло Евтимов ( Софтуерен Инженер )</h4>
+                    </div>
+    
+                    <div class="item col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 wow fadeInUp" data-wow-delay="0.6s">
+                        <i class="fa fa-quote-left"></i>
+                        <h3>Yes! Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue.</h3>
+                        <h4>James Job ( Social Assistant )</h4>
+                    </div>
+    
+                    <div class="item col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 wow fadeInUp" data-wow-delay="0.6s">
+                        <i class="fa fa-quote-left"></i>
+                        <h3>Sed dapibus rutrum lobortis. Sed nec interdum nunc, quis sodales ante. Maecenas volutpat congue.</h3>
+                        <h4>Mark Otto ( New Cyclist )</h4>
+                    </div>
+    
+                    <div class="item col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 wow fadeInUp" data-wow-delay="0.6s">
+                        <i class="fa fa-quote-left"></i>
+                        <h3>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus.</h3>
+                        <h4>David Moore ( Pro Boxer )</h4>
+                    </div>
+                    
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- =========================
+        FOOTER SECTION   
+    ============================== -->
+    <footer>
+    <section id="contacts" >
+        <div class="container">
+            <div class="row">
+    
+                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="0.6s">
+                    <h2>Телефон за връзка</h2>
+                    <p> <a href="tel:+359-8937-37369">0893737369</a>  - Слави</p>
+                    <p> <a href="tel:+359-8949-34166">0894934166</a>  - Румяна</p>
+                    <h2>Последвай ни</h2>
+                    <ul class="social-icon">
+                    <li><a href="https://www.facebook.com/profile.php?id=100007317481404&lst=100008114677146%3A100007317481404%3A1522488861" class="fa fa-facebook wow fadeIn" data-wow-delay="1s"></a></li>
+                    </ul>
+                </div>
+    
+                <div class="wow fadeInUp col-md-5 col-sm-4"  data-wow-delay="0.9s">
+                    <h2>Работно Време</h2>
+                        <div>
+                            <h5>Понеделник-Събота</h5>
+                            <h4>10:00 - 19:00</h4>
+                        </div>
+                        <div>
+                            <h5>Неделя</h5>
+                            <h4>11:00  - 17:00 </h4>
+                        </div>
+                </div>
+                
+    
+                <div class="wow fadeInUp col-md-3 col-sm-4" data-wow-delay="1s">
+                    <h2>Адрес</h2>
+                    <h4>
+    жк.Тракия бл.173 (Гербера) до Еврофутбол
+    4000 Пловдив, България</h4>
+                </div>
+    
+                <div class="clearfix"></div>
+    
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d219.9219036214509!2d24.7842567831459!3d42.13092452938095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc5e3cb3577dcc7b5!2z0JbQuNC70LjRidC10L0g0LrQvtC80L_Qu9C10LrRgSAi0JPQtdGA0LHQtdGA0LAi!5e0!3m2!1sbg!2sbg!4v1523254070830" width="1200" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <div class="col-md-12 col-sm-12">
+                    <p class="copyright-text">Copyright &copy; 2018 Ivaylo Evtimov 
+                        
+                        | contacts: <a rel="nofollow" href="" target="_parent">Ivaylo Evtimov</a></p>
+                </div>
+                
+                   
+                
+                
+            </div>
+             
+        </div>
+        </section>
+    </footer>
+    
+
+    
+
 <section id ="about">
         <form action="/index/sendEmail" method="post">
             <h1>Ask Question</h1>
@@ -74,6 +388,15 @@
         
 {% endblock main %}
 {% block scripts %}
+<script src="../../static/js/jquery.js"></script>
+<script src="../../static/js/bootstrap.min.js"></script>
+<script src="../../static/js/jquery.parallax.js"></script>
+<script src="../../static/js/jquery.nav.js"></script>
+<script src="../../static/js/jquery.backstretch.min.js"></script>
+<script src="../../static/js/owl.carousel.min.js"></script>
+<script src="../../static/js/smoothscroll.js"></script>
+<script src="../../static/js/wow.min.js"></script>
+<script src="../../static/js/custom.js"></script>
 
 {% endblock scripts %}
 </body>

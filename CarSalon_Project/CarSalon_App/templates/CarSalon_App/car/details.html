@@ -7,11 +7,13 @@
         <title>Document</title>
     </head>
     <link rel="stylesheet" type="text/css" href="../../../static/css/modalForms.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 {% endblock head %}
 <body>
 
 {% block main %}
-
+    <br>
+    <img src="{{car.image}}" width="400" height="400">
     <p>Model: {{car.model}}</p>
     <p>Year : {{car.year}}</p>
     <p>Color : {{car.color}}</p>
@@ -22,7 +24,18 @@
     <p>Top speed: {{car.topSpeed}}</p>
     <p>0/100(km/s) :  {{car.zeroToHundredAcceleration}}</p>
     <p>Description :{{car.description}}</p>
-
+    <br>
+    <p>Gallery:</p>
+    <a class="fancybox" href="../../../static/images/{{car.model}}/1_b.jpg" data-fancybox-group="gallery" title="">
+        <img src="../../../static/images/{{car.model}}/1_s.jpg" alt="" />
+    </a>
+    <a class="fancybox" href="../../../static/images/{{car.model}}/2_b.jpg" data-fancybox-group="gallery" title="">
+        <img src="../../../static/images/{{car.model}}/2_s.jpg" alt="" />
+    </a>
+    <a class="fancybox" href="../../../static/images/{{car.model}}/3_b.jpg" data-fancybox-group="gallery" title="">
+        <img src="../../../static/images/{{car.model}}/3_s.jpg" alt="" />
+    </a>
+    <br>
   
 
     
@@ -54,7 +67,7 @@
 {% if user.is_superuser %}
 
     <button id="btnSellCar">Sell Car</button>
-    
+
     <div id="mSellCar" class="modalSellCar">
         <div class="modalSellCar-content">
             <span class="closeSellCar">&times;</span>
@@ -78,7 +91,60 @@
 
 {% endblock main %}   
 {% block scripts %}
+<script src="../../../static/js/jquery.js"></script>
+
+
+<script type="text/javascript" src="../../../static/fancybox/source/jquery.fancybox.js?v=2.1.5"></script>
 <script>
+        $(document).ready(function() {
+
+			$('.fancybox').fancybox();
+		$(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'outside'
+					},
+					overlay : {
+						speedOut : 0
+					}
+				}
+			});
+
+			$("#fancybox-manual-a").click(function() {
+				$.fancybox.open('1_b.jpg');
+			});
+
+			$("#fancybox-manual-b").click(function() {
+				$.fancybox.open({
+					href : 'iframe.html',
+					type : 'iframe',
+					padding : 5
+				});
+			});
+
+			$("#fancybox-manual-c").click(function() {
+				$.fancybox.open([
+					{
+						href : '1_b.jpg',
+						title : 'My title'
+					}, {
+						href : '2_b.jpg',
+						title : '2nd title'
+					}, {
+						href : '3_b.jpg'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+		
         // Get the modal
         var modalTestDrive = document.getElementById('mTestDrive');
         
@@ -127,7 +193,7 @@
             }
         }
 
-
+    });
         </script>
     
 {% endblock scripts %}

@@ -34,6 +34,7 @@ def register(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
 
+        messages.add_message(request, messages.INFO,form._errors)
     else:
         form = RegisterForm()
     return render(request, 'CarSalon_App/auth/register.html', {'form': form})       

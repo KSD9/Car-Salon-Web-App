@@ -8,15 +8,6 @@ import filecmp
 import os
 
 
-'''
-#Global variables used for email sending , and file paths
-pathToSuccessFile = './SuccessFile_' +  str(datetime.datetime.now().strftime("%Y-%M-%d-%H-%M"))  + '.txt'
-pathToErrorFile = './ErrorFile_' + str(datetime.datetime.now().strftime("%Y-%M-%d-%H-%M")) + '.txt'
-adminEmail  = 'rushhourapp9@gmail.com'
-emailToSend = input("Please enter your email: ")
-adminPass   = "!e123456789"
-commandsToExecute =(["rm","myfile23.txt"],["touch","kurvi.txt"])
-'''
 def send_appointment_email(sender,password,receiver,subject,emailText):
     
     try:

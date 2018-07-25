@@ -7,6 +7,7 @@ from .services.emailSender import send_appointment_email,send_info_email
 from django.contrib.auth.decorators import login_required , user_passes_test
 from django.contrib import messages
 from django.http import HttpResponse , HttpResponseRedirect
+from django.contrib.auth import login, authenticate
 
 # Custom Decorator To Check If Logged User Has Admin Rights
 def superuser_required(view_func=None, login_url='/index'):
@@ -30,8 +31,8 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-            #user = authenticate(username=username, password=raw_password)
-            #login(request, user)
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
 
     else:
         form = RegisterForm()
@@ -66,7 +67,7 @@ def add_car(request):
          model = request.POST['model'],
          year = request.POST['year'],
          color = request.POST['dropdown_color'],
-         price = request.POST['price'],
+         price = request.POST['carPrice'],
          quantity = request.POST['quantity'],
          horsePowers = request.POST['horsePowers'],
          engineType = request.POST['dropdown_engineType'],
@@ -94,7 +95,7 @@ def edit_car(request,id):
         carToEdit.model = request.POST['model']
         carToEdit.year = request.POST['year']
         carToEdit.color = request.POST['dropdown_color']
-        carToEdit.price = request.POST['price']
+        carToEdit.price = request.POST['carPrice']
         carToEdit.quantity = request.POST['quantity']
         carToEdit.horsePowers = request.POST['horsePowers']
         carToEdit.engineType = request.POST['dropdown_engineType']
@@ -168,7 +169,7 @@ def create_appointment(request,id):
         date = str(request.POST['startDate'])
         emailText = 'Hello '+ user + ' ,You have booked a test drive for : '+  date + 'To try Aston Martin: '+ app
 
-        send_appointment_email(adminEmail,adminPass,'evtimov9@gmail.com','New Appointment',emailText)
+        send_appointment_email(adminEmail,adminPass,request.user.email,'New Appointment',emailText)
         return redirect('/index')
 
 @superuser_required

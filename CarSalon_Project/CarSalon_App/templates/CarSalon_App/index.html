@@ -25,6 +25,9 @@
         <!-- Google Font -->
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Lora:700italic' rel='stylesheet' type='text/css'>
+        {% block customHead %}
+        
+        {% endblock customHead %}
         
         </head>
   
@@ -148,7 +151,7 @@
                 <a href="/car/index">
                     <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
                         <div class="trainer-thumb">
-                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                            <img src="../../static/images/dbs.png" class="img-responsive" alt="Trainer">
                                 <div class="trainer-overlay">
                                     <div class="trainer-des">
                                         <h2>DBS Volante</h2>
@@ -163,7 +166,7 @@
                 <a href="/car/index">
                     <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
                         <div class="trainer-thumb">
-                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                            <img src="../../static/images/dbs.png" class="img-responsive" alt="Trainer">
                                 <div class="trainer-overlay">
                                     <div class="trainer-des">
                                         <h2>DBS Volante</h2>
@@ -178,7 +181,7 @@
                 <a href="/car/index">
                     <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
                         <div class="trainer-thumb">
-                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                            <img src="../../static/images/dbs.png" class="img-responsive" alt="Trainer">
                                 <div class="trainer-overlay">
                                     <div class="trainer-des">
                                         <h2>DBS Volante</h2>
@@ -193,7 +196,7 @@
                 <a href="/car/index">
                     <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
                         <div class="trainer-thumb">
-                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                            <img src="../../static/images/dbs.png" class="img-responsive" alt="Trainer">
                                 <div class="trainer-overlay">
                                     <div class="trainer-des">
                                         <h2>DBS Volante</h2>
@@ -208,7 +211,7 @@
                 <a href="/car/index">
                     <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
                         <div class="trainer-thumb">
-                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                            <img src="../../static/images/dbs.png" class="img-responsive" alt="Trainer">
                                 <div class="trainer-overlay">
                                     <div class="trainer-des">
                                         <h2>DBS Volante</h2>
@@ -223,7 +226,7 @@
                 <a href="/car/index">
                     <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
                         <div class="trainer-thumb">
-                            <img src="../../static/images/rumqna.jpg" class="img-responsive" alt="Trainer">
+                            <img src="../../static/images/dbs.png" class="img-responsive" alt="Trainer">
                                 <div class="trainer-overlay">
                                     <div class="trainer-des">
                                         <h2>DBS Volante</h2>
@@ -245,17 +248,46 @@
     
     
     <!-- =========================
-        NEWSLETTER SECTION   
+        EMAIL SECTION   
     ============================== -->
+    <section id="newsletter" class="parallax-section">
+            <div class="container">
+                <div class="row">
+        
+                    <div class="wow fadeInUp col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10" data-wow-delay="0.9s">
+                        <h2>CONTACT US</h2>
+                        <h4>Have a question ? We will be glad to assisst.</h4>
+                        <div class="newsletter_detail">
+                            <form action="/index/sendEmail" method="post" id="newsletter-signup">
+                                {% csrf_token %}
+                                <div class="col-md-6 col-sm-6">
+                                    <input name="name" type="text" class="form-control" id="name" placeholder="Name">
+                                  </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Email">
+                                  </div>
+                                <div class="col-md-6 col-sm-6">
+                                   
+                                    <textarea class="form-text-area" id="body" name="body" placeholder="Message" rows="5" cols="60"></textarea>
+                                    </div>
+                                      
+                                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+                                    <input name="submit" type="submit" class="form-control" id="submit" value="SEND MESSAGE">
+                                </div>
+                              </form>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </section>
+        
     
     
     
     
     
     
-    <!-- =========================
-        PRICE SECTION   
-    ============================== -->
    
     
     
@@ -272,8 +304,8 @@
     
                     <div class="item col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 wow fadeInUp" data-wow-delay="0.6s">
                         <i class="fa fa-quote-left"></i>
-                        <h3>Прекрасно обслужване ! Прекрасен персонал ! Приятелско посрещане !</h3>
-                        <h4>Ивайло Евтимов ( Софтуерен Инженер )</h4>
+                        <h3>Recently got DB9 From This Salon, I Must Say This Is The Best Place !</h3>
+                        <h4>John Petkov ( Microsoft,CEO. )</h4>
                     </div>
     
                     <div class="item col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 wow fadeInUp" data-wow-delay="0.6s">
@@ -310,33 +342,32 @@
             <div class="row">
     
                 <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="0.6s">
-                    <h2>Телефон за връзка</h2>
-                    <p> <a href="tel:+359-8937-37369">0893737369</a>  - Слави</p>
-                    <p> <a href="tel:+359-8949-34166">0894934166</a>  - Румяна</p>
-                    <h2>Последвай ни</h2>
+                    <h2>Telephone:</h2>
+                    <p> <a href="tel:+359-8937-37369">0888888888</a>  - Steve</p>
+                    <p> <a href="tel:+359-8949-34166">0894666166</a>  - Josh</p>
+                    <h2>Follow Us</h2>
                     <ul class="social-icon">
                     <li><a href="https://www.facebook.com/profile.php?id=100007317481404&lst=100008114677146%3A100007317481404%3A1522488861" class="fa fa-facebook wow fadeIn" data-wow-delay="1s"></a></li>
                     </ul>
                 </div>
     
                 <div class="wow fadeInUp col-md-5 col-sm-4"  data-wow-delay="0.9s">
-                    <h2>Работно Време</h2>
+                    <h2>Work Hours</h2>
                         <div>
-                            <h5>Понеделник-Събота</h5>
+                            <h5>Monday-Saturday</h5>
                             <h4>10:00 - 19:00</h4>
                         </div>
                         <div>
-                            <h5>Неделя</h5>
+                            <h5>Sunday</h5>
                             <h4>11:00  - 17:00 </h4>
                         </div>
                 </div>
                 
     
                 <div class="wow fadeInUp col-md-3 col-sm-4" data-wow-delay="1s">
-                    <h2>Адрес</h2>
-                    <h4>
-    жк.Тракия бл.173 (Гербера) до Еврофутбол
-    4000 Пловдив, България</h4>
+                    <h2>Address</h2>
+                    <h4>1 Highway Street , Michigan , NY, 4000
+                    </h4>
                 </div>
     
                 <div class="clearfix"></div>
@@ -360,30 +391,7 @@
 
     
 
-<section id ="about">
-        <form action="/index/sendEmail" method="post">
-            <h1>Ask Question</h1>
-            
-            {% csrf_token %}
-            
-            <label for="name">Email:</label>
-            <div class="form-group">
-                <input type="email" id="email" name="email" required>
-            </div>
-            <label for="password">Name:</label>
-            <div class="form-group">
-                <input type="text" id="name" name="name" required>
-            </div>
-            <label for="password">Message :</label>
-            <div class="form-group">
-                <input type="text" id="body" name="body" required>
-            </div>
-        
-            <div class="form-group">
-                <button type="submit" value="Create" class="btn-signin">Add</button>
-            </div>
-        </form>
-</section>
+
         
         
 {% endblock main %}

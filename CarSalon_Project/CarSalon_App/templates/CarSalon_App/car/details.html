@@ -1,15 +1,20 @@
 {% extends "../index.html" %}
-{% block head %}
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-    </head>
+
+    {% block customHead %}
     <link rel="stylesheet" type="text/css" href="../../../static/css/modalForms.css">
     <link rel="stylesheet" type="text/css" href="../../../static/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
     <link rel="stylesheet" href="../../../static/css/bootstrap-datetimepicker.css" />
-{% endblock head %}
+
+
+    <link rel="stylesheet" href="../../../static/css/table.css">
+    <link rel="stylesheet" href="../../../static/css/custom.css">
+    <link rel="stylesheet" href="../../../static/css/base.css">
+    <link rel="stylesheet" href="../../../static/css/layout.css">
+    <link rel="stylesheet" href="../../../static/css/responsive.css">
+
+    
+    {% endblock customHead %}
+
 <body>
 
 {% block main %}
@@ -22,82 +27,226 @@
   </ul>
   {% endif %}
   
-    <br>
-    <img src="{{car.image}}" width="400" height="400">
-    <p>Model: {{car.model}}</p>
-    <p>Year : {{car.year}}</p>
-    <p>Color : {{car.color}}</p>
-    <p>Price: {{car.price}}</p>
-    <p>Quantity: {{car.quantity}}</p>
-    <p>Hp : {{car.horsePowers}}</p>
-    <p>Engine: {{car.engineType}}</p>
-    <p>Top speed: {{car.topSpeed}}</p>
-    <p>0/100(km/s) :  {{car.zeroToHundredAcceleration}}</p>
-    <p>Description :{{car.description}}</p>
-    <br>
-    <p>Gallery:</p>
-    <a class="fancybox" href="../../../static/images/{{car.model}}/1_b.jpg" data-fancybox-group="gallery" title="">
-        <img src="../../../static/images/{{car.model}}/1_s.jpg" alt="" />
-    </a>
-    <a class="fancybox" href="../../../static/images/{{car.model}}/2_b.jpg" data-fancybox-group="gallery" title="">
-        <img src="../../../static/images/{{car.model}}/2_s.jpg" alt="" />
-    </a>
-    <a class="fancybox" href="../../../static/images/{{car.model}}/3_b.jpg" data-fancybox-group="gallery" title="">
-        <img src="../../../static/images/{{car.model}}/3_s.jpg" alt="" />
-    </a>
-    <br>
-  
 
     
-{% if user.is_authenticated %}
 
-    <button id="btnTestDrive">Book Test Drive</button>
+<div class="body-wrapper">
 
-    <div id="mTestDrive" class="modalTestDrive">
-        <div class="modalTestDrive-content">
-            <span class="closeTestDrive">&times;</span>
-            <form action="/appointment/create/{{car.id}}" method="post">
-                <h1>Book Test Drive</h1>
-                
-                {% csrf_token %}
-                
-                <label for="name">Start Date:</label>
-                <div class="form-group">
-                    <input type="datetime" id="startDate" name="startDate" required>
-                </div>
-                
-                <div class="form-group">
-                    <button type="submit" value="Create" class="btn-signin">Add</button>
-                </div>
-            </form>
+    <div class="wrapper clearfix">
+       
+           <div id="main" class="grid-block">
+   
+               <div id="maininner" class="grid-box">
+   
+                   <section id="content" class="grid-block"><div id="system" class="servicePage">
+   
+     <article class="item" data-permalink="{{car.image}}">
+            <h1>_</h1>
+       <header>
+   
+         <h1 class="title">
+   
+           {{car.model}}
+         </h1>
+   
+       </header>
+   
+       <div class="content clearfix">
+   
+         <div class="two-sixth">
+   
+           <div class="content-img gkResponsive">
+   
+             
+             <a data-lightbox href="#"> <img class="alignnone size-full wp-image-506" src="{{car.image}}" alt="Фризьорство" width="664" height="1000" /> </a> </div>
+   
+           <div class="serviceinfotitle">
+   
+             <h3>Details:</h3>
+   
+           </div>
+   
+           <div class="serviceinfo">
+   
+             <ul class='post-meta'>
+   <li><span class='post-meta-key'>Description:</span> {{car.description}}</li>
+   </ul>
+             <ul>
+            
+             </ul>
+   
+           </div>
+   <article>
+               <hl><b>Gallery:</b></hl>
+               <p>
+                <a class="fancybox" href="../../../static/images/{{car.model}}/1_b.jpg" data-fancybox-group="gallery" title="">
+                    <img src="../../../static/images/{{car.model}}/1_s.jpg" alt="" />
+                </a>
+                <a class="fancybox" href="../../../static/images/{{car.model}}/2_b.jpg" data-fancybox-group="gallery" title="">
+                    <img src="../../../static/images/{{car.model}}/2_s.jpg" alt="" />
+                </a>
+                <a class="fancybox" href="../../../static/images/{{car.model}}/3_b.jpg" data-fancybox-group="gallery" title="">
+                    <img src="../../../static/images/{{car.model}}/3_s.jpg" alt="" />
+                </a>
+                   
+                   
+               </p>
+           </article>
+         </div>
+         
+         <div class="four-sixth last">
+           <div class="content-text">
+             <p>A Touch Of Genius</p>
+   <div class='box with-header '><div class='box-header center '><strong>Details</strong></div><div class='box-content'><div class='text   center' >
+   </div>
+   <div class='table default'>
+   <table cellspacing="0" cellpadding="0">
+   <tbody>
+   <tr>
+   <td>
+   <ul class="checkmark">
+   <li>Year</li>
+   </ul>
+   </td>
+   <td>{{car.year}}</td>
+   </tr>
+   <tr>
+   <td>
+   <ul class="checkmark">
+   <li>Color</li>
+   </ul>
+   </td>
+   <td>{{car.color}}</td>
+   </tr>
+   <tr>
+   <td>
+   <ul class="checkmark">
+   <li>Price</li>
+   </ul>
+   </td>
+   <td>{{car.price}} $</td>
+   </tr>
+   <tr>
+   <td>
+   <ul class="checkmark">
+   <li>HP</li>
+   </ul>
+   </td>
+   <td>{{car.horsePowers}}</td>
+   </tr>
+   <tr>
+    <td>
+    <ul class="checkmark">
+    <li>Engine</li>
+    </ul>
+    </td>
+    <td>{{car.engineType}} </td>
+    </tr>
+    <tr>
+   <td>
+   <ul class="checkmark">
+   <li>Top Speed</li>
+   </ul>
+   </td>
+   <td>{{car.topSpeed}} km/h </td>
+   </tr>
+   <tr>
+    <td>
+    <ul class="checkmark">
+    <li>0/100 (km/s)</li>
+    </ul>
+    </td>
+    <td>{{car.zeroToHundredAcceleration}} s.</td>
+    </tr>
+   
+   
+
+    
+
+        
+   
+   </tbody>
+   </table>
+   
+   </div>
+   <p>
+   <span class='spacer small'></span></p>
+   <div class='text   center' >
+        {% if user.is_authenticated %}
+
+        <button id="btnTestDrive">Book Test Drive</button>
+    
+        <div id="mTestDrive" class="modalTestDrive">
+            <div class="modalTestDrive-content">
+                <span class="closeTestDrive">&times;</span>
+                <form action="/appointment/create/{{car.id}}" method="post">
+                    <h1>Book Test Drive</h1>
+                    
+                    {% csrf_token %}
+                    
+                    <label for="name">Start Date:</label>
+                    <div class="form-group">
+                        <input type="datetime" id="startDate" name="startDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" value="Create" class="btn-signin">Add</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-{%endif%}
-
-{% if user.is_superuser %}
-
-    <button id="btnSellCar">Sell Car</button>
-
-    <div id="mSellCar" class="modalSellCar">
-        <div class="modalSellCar-content">
-            <span class="closeSellCar">&times;</span>
-            <form action="/car/sell/{{car.id}}" method="post">
-                <h1>Sell Carr</h1>
-                
-                {% csrf_token %}
-                
-                <label for="name">Quantity</label>
-                <div class="form-group">
-                    <input type="number" id="quantity" name="quantity" required>
-                </div>
-                
-                <div class="form-group">
-                    <button type="submit" value="Create" class="btn-signin">Add</button>
-                </div>
-            </form>
+    {%endif%}
+    
+    {% if user.is_superuser %}
+    
+        <button id="btnSellCar">Sell Car</button>
+    
+        <div id="mSellCar" class="modalSellCar">
+            <div class="modalSellCar-content">
+                <span class="closeSellCar">&times;</span>
+                <form action="/car/sell/{{car.id}}" method="post">
+                    <h1>Sell Carr</h1>
+                    
+                    {% csrf_token %}
+                    
+                    <label for="name">Quantity</label>
+                    <div class="form-group">
+                        <input type="number" id="quantity" name="quantity" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" value="Create" class="btn-signin">Add</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-{%endif%}
+    {%endif%}
+    
+   </div>
+   </div></div>
+   <p><b> </b></p>
+   <p>&nbsp;</p>
+   <p>&nbsp;</p>
+   
+           </div>
+   
+         </div>
+   
+       </div>
+   
+     </article>
+   
+   </div>
+   </section>
+       </div>
+               <!-- maininner end -->
+   
+           </div>
+       <!-- main end -->
+       
+   </div>
+   
+   </div>
 
 {% endblock main %}   
 {% block scripts %}

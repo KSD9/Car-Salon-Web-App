@@ -14,12 +14,16 @@
                   
                     <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
                         <div class="trainer-thumb">
-                            <img src="{{car.image}}" class="img-responsive" alt="Trainer">
+                            <img src="{{car.image}}"  width ="300" height="400" alt="Trainer">
                                 <div class="trainer-overlay">
                                     <div class="trainer-des">
                                         <h2>{{car.model}}</h2>
                                         <h3>{{car.price}} $</h3>
                                         <h4><a href="/car/details/{{car.id}}"> Details</a></h4>
+                                        {% if user.is_superuser %}
+                                        <h4><a href="/car/edit/{{car.id}}"> Edit</a></h4>
+                                        <h4><a href="/car/deleteConfirm/{{car.id}}"> Delete</a></h4>
+                                        {%endif%}
                                     </div>
                                 </div>
                         </div>
@@ -28,19 +32,19 @@
                     {%endfor%}
 
                   
-                
-    
+                </div>
             </div>
-        </div>
+            
+                {% if user.is_superuser %}
+                <a href="/car/create">Add New Car</a>
+            {%endif%} 
     </section>
 
     
 
   
         
-{% if user.is_superuser %}
-    <a href="/car/create">Add New Car</a>
-{%endif%}    
+   
 {% endblock main %}
 </body>
 </html>

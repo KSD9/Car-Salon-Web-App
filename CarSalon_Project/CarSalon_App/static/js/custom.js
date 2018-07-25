@@ -12,30 +12,7 @@ $(document).ready(function() {
 
   /* template navigation
   -----------------------------------------------*/
- $('.main-navigation').onePageNav({
-        scrollThreshold: 0.2, // Adjust if Navigation highlights too early or too late
-        scrollOffset: 75, //Height of Navigation Bar
-        filter: ':not(.external)',
-        changeHash: true
-    }); 
-
-    /* Navigation visible on Scroll */
-    mainNav();
-    $(window).scroll(function () {
-        mainNav();
-    });
-
-    function mainNav() {
-        var top = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-        if (top > 40) $('.sticky-navigation').stop().animate({
-            "opacity": '1',
-            "top": '0'
-        });
-        else $('.sticky-navigation').stop().animate({
-            "opacity": '0',
-            "top": '-75'
-        });
-    }
+ 
     
 
    /* Hide mobile menu after clicking on a link
@@ -78,11 +55,11 @@ $(document).ready(function() {
   $(function(){
     jQuery(document).ready(function() {
     $('#home').backstretch([
-       "../../static/images/header.jpg", 
-	   "../../static/images/header3edited2.jpg",
-	    "../../static/images/header5.jpg",
-	   "/../../static/images/header6.jpg",
-	   "../../static/images/header4.jpg",
+       "../../static/images/header1.jpg", 
+	   "../../static/images/header2.jpg",
+	    "../../static/images/header3.jpg",
+	   "/../../static/images/header4.jpg",
+	  
 	  
        
         ],  {duration: 3000, fade: 750});

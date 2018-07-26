@@ -16,7 +16,6 @@
                                 <h4>
                                     <a href="/car/details/{{car.id}}"> Details</a>
                                 </h4>
-
                                 {% if user.is_superuser %}
                                 <h4>
                                     <a href="/car/edit/{{car.id}}"> Edit</a>
@@ -25,7 +24,6 @@
                                     <a href="/car/deleteConfirm/{{car.id}}"> Delete</a>
                                 </h4>
                                 {%endif%}
-
                             </div>
                         </div>
                     </div>
@@ -33,13 +31,10 @@
             {%endfor%}
             </div>
         </div>
-
         {% if user.is_superuser %}
         <a href="/car/create">Add New Car</a>
         {%endif%}
-
     </section>
     {% endblock main %}
 </body>
-
 </html>

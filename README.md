@@ -13,25 +13,23 @@
  
 Then open your localhost with your local port. 
 
-# Roles: User, Admin 
+# Roles: User, Admin, Not Logged User
+
+# Not Logged User:
+- Can see all the cars
+- Can see details about a car
+- Can send information emails
 
 # User charectaristics:
-- Can create many Notes And List With Notes
-- Can update/delete/see their Notes
-- Can update/see their List With Notes
-- Can request lists for deletion to admin.
-- Can see Main Page
-
-
-
+- Can create test drives for cars
 
 # Admin charectaristics:
 - Can see all the users
 - Can delete users
-- Can see all the Notes,Lists
-- Can create Notes/Lists
-- Can update Notes/Lists
-- Can delete Notes/Lists
+- Can see all the Cars
+- Can create Cars
+- Can update Cars
+- Can delete Cars
 
 
 

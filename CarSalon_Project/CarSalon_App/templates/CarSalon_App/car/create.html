@@ -1,77 +1,74 @@
 {% extends "../index.html" %}
 
 <body>
-{% block main %}
-<section id="newsletter" class="parallax-section">
+    {% block main %}
+    <section id="newsletter" class="parallax-section">
         <div class="container">
             <div class="row">
-<div class="newsletter_detail">
-    <form action="/car/create" method="post">
-        <h1>Add New Car</h1>
-        
-        {% csrf_token %}
-        
-        <label for="password">Model:</label>
-        <div class="form-group">
-        
-            <input type="text" id="model" name="model" placeholder="Model" class="form-control" required>
+                <div class="newsletter_detail">
+                    <form action="/car/create" method="post">
+                        <h1>Add New Car</h1>
+                        {% csrf_token %}
+                        <label for="password">Model:</label>
+                        <div class="form-group">
+                            <input type="text" id="model" name="model" placeholder="Model" class="form-control" required>
+                        </div>
+                        <label for="password">Year:</label>
+                        <div class="form-group">
+                            <input type="number" id="year" name="year" placeholder="Year" class="form-control" min="1960" required>
+                        </div>
+                        <label for="password">Color:</label>
+                        <div class="form-group">
+                            <select name="dropdown_color" class="form-control">
+                                <option value="black">Black</option>
+                                <option value="grey">Grey</option>
+                            </select>
+                        </div>
+                        <label for="password">Price:</label>
+                        <div class="form-group">
+                            <input type="number" id="carPrice" name="carPrice" placeholder="Price" class="form-control" min="0" required>
+                        </div>
+                        <label for="password">Quantity:</label>
+                        <div class="form-group">
+                            <input type="number" id="quantity" name="quantity" placeholder="Quantity" class="form-control" min="0" required>
+                        </div>
+                        <label for="password">Horse Powers:</label>
+                        <div class="form-group">
+                            <input type="number" id="horsePowers" name="horsePowers" placeholder="HP" class="form-control" min="0" required>
+                        </div>
+                        <label for="password">Engine Type:</label>
+                        <div class="form-group">
+                            <select name="dropdown_engineType" class="form-control">
+                                <option value="V12 Petrolium">V12 Petrolium</option>
+                                <option value="V8 Disel">V8 Disel</option>
+                            </select>
+                        </div>
+                        <label for="password">Top Speed:</label>
+                        <div class="form-group">
+                            <input type="number" id="topSpeed" name="topSpeed" placeholder="Top Speed" class="form-control" min="0" required>
+                        </div>
+                        <label for="password">0-100(km/h) Acceleration :</label>
+                        <div class="form-group">
+                            <input type="number" id="zeroToHundredAcceleration" name="zeroToHundredAcceleration" placeholder="0/100 (km/s)" min="0" class="form-control"
+                                required>
+                        </div>
+                        <label for="password">Image :</label>
+                        <div class="form-group">
+                            <input type="text" id="image" name="image" class="form-control" placeholder="Image" required>
+                        </div>
+                        <label for="password">Description :</label>
+                        <div class="form-group">
+                            <input type="text" id="description" name="description" class="form-control" min="0" placeholder="Description" required>
+                        </div>
+                        <div class="form-group">
+                            <input name="submit" type="submit" class="form-control" id="submit" value="Add New Car">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        
-        <label for="password">Year:</label>
-        <div class="form-group">
-            <input type="number" id="year" name="year" placeholder="Year" class="form-control" min="1960" required>
-        </div>
-        <label for="password">Color:</label>
-        <div class="form-group">
-            <select name="dropdown_color" class="form-control">
-                <option value="black">Black</option>
-                <option value="grey">Grey</option>
-            </select>
-        </div>
-        <label for="password">Price:</label>
-        <div class="form-group">
-            <input type="number" id="carPrice" name="carPrice" placeholder="Price" class="form-control" min="0" required>
-        </div>
-        <label for="password">Quantity:</label>
-        <div class="form-group">
-            <input type="number" id="quantity" name="quantity"  placeholder="Quantity" class="form-control" min="0" required>
-        </div>
-        <label for="password">Horse Powers:</label>
-        <div class="form-group">
-            <input type="number" id="horsePowers" name="horsePowers" placeholder="HP" class="form-control" min="0" required>
-        </div>
-        <label for="password">Engine Type:</label>
-        <div class="form-group">
-            <select name="dropdown_engineType" class="form-control" >
-                <option value="V12 Petrolium">V12 Petrolium</option>
-                <option value="V8 Disel">V8 Disel</option>
-            </select>
-        </div>
-        <label for="password">Top Speed:</label>
-        <div class="form-group">
-            <input type="number" id="topSpeed" name="topSpeed" placeholder="Top Speed" class="form-control" min="0" required>
-        </div>
-        <label for="password">0-100(km/h) Acceleration  :</label>
-        <div class="form-group">
-            <input type="number" id="zeroToHundredAcceleration" name="zeroToHundredAcceleration" placeholder="0/100 (km/s)" min="0" class="form-control" required>
-        </div>
-
-        <label for="password">Image  :</label>
-        <div class="form-group">
-            <input type="text" id="image" name="image" class="form-control" placeholder="Image"  required>
-        </div>
-        <label for="password">Description  :</label>
-        <div class="form-group">
-            <input type="text" id="description" name="description" class="form-control" min="0" placeholder="Description" required>
-        </div>
-        <div class="form-group">
-                <input name="submit" type="submit" class="form-control" id="submit" value="Add New Car">
-        </div>
-    </form>
-    </div>
-    </div>
-    </div>
     </section>
-{% endblock main %}
+    {% endblock main %}
 </body>
+
 </html>

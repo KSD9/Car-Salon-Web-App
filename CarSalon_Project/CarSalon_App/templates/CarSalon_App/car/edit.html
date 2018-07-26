@@ -2,24 +2,17 @@
 
 <body>
     {% block main %}
-
-
-
     <section id="newsletter" class="parallax-section">
         <div class="container">
             <div class="row">
                 <div class="newsletter_detail">
                     <form action="/car/edit/{{car.id}}" method="post">
                         <h1>Edit Car</h1>
-
                         {% csrf_token %}
-
                         <label for="password">Model:</label>
                         <div class="form-group">
-
                             <input type="text" id="model" name="model" placeholder="Model" class="form-control" value="{{car.model}}" required>
                         </div>
-
                         <label for="password">Year:</label>
                         <div class="form-group">
                             <input type="number" id="year" name="year" class="form-control" min="1960" value="{{car.year}}" required>
@@ -78,5 +71,4 @@
     </section>
     {% endblock main %}
 </body>
-
 </html>

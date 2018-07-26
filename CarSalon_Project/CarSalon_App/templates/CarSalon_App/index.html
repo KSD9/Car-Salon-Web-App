@@ -2,53 +2,44 @@
 <html lang="en">
 {% block head %}
 
-
 <head>
-
     <title>Aston Martin Salon</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
     <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../static/css/animate.css">
     <link rel="stylesheet" href="../../static/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../static/css/owl.theme.css">
     <link rel="stylesheet" href="../../static/css/owl.carousel.css">
     <link rel="stylesheet" href="../../static/css/pnotify.custom.min.css">
-
-
     <!-- Main css -->
     <link rel="stylesheet" href="../../static/css/style.css">
-
     <!-- Google Font -->
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Lora:700italic' rel='stylesheet' type='text/css'> {% block customHead %} {% endblock customHead %}
-
+    <link href='https://fonts.googleapis.com/css?family=Lora:700italic' rel='stylesheet' type='text/css'>
+     {% block customHead %} 
+     {% endblock customHead %}
 </head>
-
 {% endblock head %} 
 
 {% block header %}
 
 <header>
-
     <!-- =========================
     NAVIGATION SECTION   
 ============================== -->
     <div class="navbar navbar-default navbar-fixed-top sticky-navigation" role="navigation">
         <div class="container">
-
             <div class="navbar-header">
                 <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon icon-bar"></span>
                     <span class="icon icon-bar"></span>
                     <span class="icon icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">Aston Martin Salon</a>
+                <a href="/index" class="navbar-brand">Aston Martin Salon</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right main-navigation">
@@ -70,16 +61,21 @@
                         <a href="#about" class="smoothScroll">About</a>
                     </li>
                     <li>
+                            <a href="#trainer" class="smoothScroll">Models</a>
+                    </li>
+                    <li>
                         <a href="/car/index" class="smoothScroll">Cars</a>
                     </li>
                     <li>
                         <a href="/logout" class="smoothScroll">Log out</a>
                     </li>
 
-
                     {% else %}
                     <li>
                         <a href="/index" class="smoothScroll">Home</a>
+                    </li>
+                    <li>
+                            <a href="#trainer" class="smoothScroll">Models</a>
                     </li>
                     <li>
                         <a href="/car/index" class="smoothScroll">Cars</a>
@@ -100,51 +96,35 @@
 
         </div>
     </div>
-
 </header>
-
-
-
 {% endblock header %}
-
 <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
     {% block main %}
-
     <!-- =========================
     HOME SECTION   
 ============================== -->
     <section id="home" class="parallax-section">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-offset-1 col-md-10 col-sm-12">
                     <h3 class="wow bounceIn" data-wow-delay="0.9s">Welcome To </h3>
                     <h1 class="wow fadeInUp" data-wow-delay="1.6s">Aston Martin Car Salon</h1>
                     <a href="#overview" class="wow fadeInUp smoothScroll btn btn-default" data-wow-delay="2s">Learn More</a>
                 </div>
-
             </div>
         </div>
     </section>
-
-
     <!-- =========================
         OVERVIEW SECTION   
     ============================== -->
     <section id="overview" class="parallax-section">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-6 col-sm-12">
-
                     <iframe width="560" height="450" src="https://www.youtube.com/embed/zN8DGSswGDo" frameborder="0" allow="autoplay; encrypted-media"
                         allowfullscreen></iframe>
-
-
                 </div>
-
                 <div class="col-md-1"></div>
-
                 <div class="wow fadeInUp col-md-4 col-sm-12" data-wow-delay="1s">
                     <div class="overview-detail">
                         <h2>Aston Martin</h2>
@@ -156,16 +136,12 @@
                         <a href="#trainer" class="btn btn-default smoothScroll">See More</a>
                     </div>
                 </div>
-
                 <div class="col-md-1"></div>
-
             </div>
         </div>
     </section>
-
-
     <!-- =========================
-        TRAINER SECTION   
+        Models SECTION   
     ============================== -->
     <section id="trainer" class="parallax-section">
         <div class="container">
@@ -183,7 +159,6 @@
                                 <div class="trainer-des">
                                     <h2>DBS</h2>
                                     <h3>Volante </h3>
-
                                 </div>
                             </div>
                         </div>
@@ -240,8 +215,6 @@
                             <div class="trainer-overlay">
                                 <div class="trainer-des">
                                     <h2>Vulcan</h2>
-
-
                                 </div>
                             </div>
                         </div>
@@ -256,29 +229,21 @@
                                 <div class="trainer-des">
                                     <h2>VANQUISH</h2>
                                     <h3>Zagato</h3>
-
                                 </div>
                             </div>
                         </div>
                         <p>Special</p>
                     </div>
                 </a>
-
-
-
-
             </div>
         </div>
     </section>
-
-
     <!-- =========================
         EMAIL SECTION   
     ============================== -->
     <section id="newsletter" class="parallax-section">
         <div class="container">
             <div class="row">
-
                 <div class="wow fadeInUp col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10" data-wow-delay="0.9s">
                     <h2>CONTACT US</h2>
                     <h4>Have a question ? We will be glad to assisst.</h4>
@@ -297,7 +262,7 @@
                             </div>
 
                             <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
-                                <input name="submit" type="submit" class="form-control"   id="submit" value="SEND MESSAGE">
+                                <input name="submit" type="submit" class="form-control" id="submit" value="SEND MESSAGE">
                             </div>
                         </form>
                     </div>
@@ -306,23 +271,12 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
     <!-- =========================
         TESTIMONIAL SECTION   
     ============================== -->
     <section id="testimonial" class="parallax-section">
         <div class="container">
             <div class="row">
-
                 <!-- Testimonial Owl Carousel section
                 ================================================== -->
                 <div id="owl-testimonial" class="owl-carousel">
@@ -330,25 +284,25 @@
                     <div class="item col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 wow fadeInUp" data-wow-delay="0.6s">
                         <i class="fa fa-quote-left"></i>
                         <h3>Recently got DB9 From This Salon, I Must Say This Is The Best Place !</h3>
-                        <h4>John Petkov ( Microsoft,CEO. )</h4>
+                        <h4>John Petkov ( Microsoft,CEO )</h4>
                     </div>
 
                     <div class="item col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 wow fadeInUp" data-wow-delay="0.6s">
                         <i class="fa fa-quote-left"></i>
-                        <h3>Yes! Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue.</h3>
-                        <h4>James Job ( Social Assistant )</h4>
+                        <h3>Yes! I definetely recommend this place!</h3>
+                        <h4>James Job ( MSD , Chairman )</h4>
                     </div>
 
                     <div class="item col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 wow fadeInUp" data-wow-delay="0.6s">
                         <i class="fa fa-quote-left"></i>
-                        <h3>Sed dapibus rutrum lobortis. Sed nec interdum nunc, quis sodales ante. Maecenas volutpat congue.</h3>
-                        <h4>Mark Otto ( New Cyclist )</h4>
+                        <h3>You want to buy Aston Martin ? Look no more , your are in the right place !</h3>
+                        <h4>Mark Otto ( Oracle, CEO )</h4>
                     </div>
 
                     <div class="item col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 wow fadeInUp" data-wow-delay="0.6s">
                         <i class="fa fa-quote-left"></i>
-                        <h3>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus.</h3>
-                        <h4>David Moore ( Pro Boxer )</h4>
+                        <h3>Best salon , best people , best cars ! Simple all the best in one place !</h3>
+                        <h4>Dimitar Hadzyisky ( Code-Nest,CEO )</h4>
                     </div>
 
                 </div>
@@ -356,16 +310,13 @@
             </div>
         </div>
     </section>
-
-
     <!-- =========================
         FOOTER SECTION   
     ============================== -->
     <footer>
-        <section id="contacts">
+        <section id="about">
             <div class="container">
                 <div class="row">
-
                     <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="0.6s">
                         <h2>Telephone:</h2>
                         <p>
@@ -392,16 +343,12 @@
                             <h4>11:00 - 17:00 </h4>
                         </div>
                     </div>
-
-
                     <div class="wow fadeInUp col-md-3 col-sm-4" data-wow-delay="1s">
                         <h2>Address</h2>
                         <h4>1 Highway Street , Michigan , NY, 4000
                         </h4>
                     </div>
-
                     <div class="clearfix"></div>
-
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d219.9219036214509!2d24.7842567831459!3d42.13092452938095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc5e3cb3577dcc7b5!2z0JbQuNC70LjRidC10L0g0LrQvtC80L_Qu9C10LrRgSAi0JPQtdGA0LHQtdGA0LAi!5e0!3m2!1sbg!2sbg!4v1523254070830"
                         width="1200" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                     <div class="col-md-12 col-sm-12">
@@ -409,22 +356,10 @@
                             <a rel="nofollow" href="" target="_parent">Ivaylo Evtimov</a>
                         </p>
                     </div>
-
-
-
-
                 </div>
-
             </div>
         </section>
     </footer>
-
-
-
-
-
-
-
     {% endblock main %} {% block scripts %}
     <script src="../../static/js/jquery.js"></script>
     <script src="../../static/js/bootstrap.min.js"></script>
@@ -436,19 +371,17 @@
     <script src="../../static/js/wow.min.js"></script>
     <script src="../../static/js/custom.js"></script>
     <script src="../../static/js/pnotify.custom.min.js"></script>
-
-
     <script>
         function mySubmitFunction(event) {
             event.preventDefault();
             send_email()
             return false;
-              }
+        }
         function send_email() {
             var email = document.getElementById("email").value;
             var name = document.getElementById("name").value;
             var body = document.getElementById("body").value;
-            if (email == "" || name=="" || body=="") {
+            if (email == "" || name == "" || body == "") {
                 new PNotify({
                     title: 'Please Fill All Of The Fields',
                     text: ' Fields Cannot Be Empty',
@@ -460,8 +393,8 @@
                 type: "POST",
                 url: "index/sendEmail",
                 data: {
-                    'email': email ,
-                    'name': name ,
+                    'email': email,
+                    'name': name,
                     'body': body
                 },
                 success: Sucess,
@@ -469,9 +402,9 @@
             });
 
             function Sucess() {
-            var email = document.getElementById("email").value= "";
-            var name = document.getElementById("name").value="";
-            var body = document.getElementById("body").value="";
+                var email = document.getElementById("email").value = "";
+                var name = document.getElementById("name").value = "";
+                var body = document.getElementById("body").value = "";
 
                 new PNotify({
                     title: 'Email Sended Successfuly!',
@@ -488,8 +421,7 @@
                 });
             }
         }
-    </script>
-     {% endblock scripts %}
+    </script> {% endblock scripts %}
 </body>
 
 </html>

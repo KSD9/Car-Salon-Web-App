@@ -1,50 +1,45 @@
 {% extends "../index.html" %}
 
 <body>
-{% block main %}
-        
-<section id="trainer" class="parallax-section">
+    {% block main %}
+    <section id="trainer" class="parallax-section">
         <div class="container">
             <div class="row">
-                    {%for car in cars%}
-                   
-                        
-                           
-                        
-                  
-                    <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
-                        <div class="trainer-thumb">
-                            <img src="{{car.image}}"  width ="300" height="400" alt="Trainer">
-                                <div class="trainer-overlay">
-                                    <div class="trainer-des">
-                                        <h2>{{car.model}}</h2>
-                                        <h3>{{car.price}} $</h3>
-                                        <h4><a href="/car/details/{{car.id}}"> Details</a></h4>
-                                        {% if user.is_superuser %}
-                                        <h4><a href="/car/edit/{{car.id}}"> Edit</a></h4>
-                                        <h4><a href="/car/deleteConfirm/{{car.id}}"> Delete</a></h4>
-                                        {%endif%}
-                                    </div>
-                                </div>
+            {%for car in cars%}
+                <div class="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="0.3s">
+                    <div class="trainer-thumb">
+                        <img src="{{car.image}}" width="300" height="400" alt="Trainer">
+                        <div class="trainer-overlay">
+                            <div class="trainer-des">
+                                <h2>{{car.model}}</h2>
+                                <h3>{{car.price}} $</h3>
+                                <h4>
+                                    <a href="/car/details/{{car.id}}"> Details</a>
+                                </h4>
+
+                                {% if user.is_superuser %}
+                                <h4>
+                                    <a href="/car/edit/{{car.id}}"> Edit</a>
+                                </h4>
+                                <h4>
+                                    <a href="/car/deleteConfirm/{{car.id}}"> Delete</a>
+                                </h4>
+                                {%endif%}
+
+                            </div>
                         </div>
-                        
                     </div>
-                    {%endfor%}
-
-                  
                 </div>
+            {%endfor%}
             </div>
-            
-                {% if user.is_superuser %}
-                <a href="/car/create">Add New Car</a>
-            {%endif%} 
+        </div>
+
+        {% if user.is_superuser %}
+        <a href="/car/create">Add New Car</a>
+        {%endif%}
+
     </section>
-
-    
-
-  
-        
-   
-{% endblock main %}
+    {% endblock main %}
 </body>
+
 </html>

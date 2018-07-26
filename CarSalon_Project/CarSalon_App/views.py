@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required , user_passes_test
 from django.contrib import messages
 from django.http import HttpResponse , HttpResponseRedirect
 from django.contrib.auth import login, authenticate
+from django.views.decorators.csrf import csrf_exempt
 
 # Custom Decorator To Check If Logged User Has Admin Rights
 def superuser_required(view_func=None, login_url='/index'):
@@ -19,11 +20,11 @@ def superuser_required(view_func=None, login_url='/index'):
     if view_func:
         return actual_decorator(view_func)
     return actual_decorator
-
+#Application Index
 def application_index(request):
-    
     return render(request,'../templates/CarSalon_App/index.html')
 
+# Veiw For User Registration
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -33,21 +34,17 @@ def register(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-
         messages.add_message(request, messages.INFO,form._errors)
     else:
         form = RegisterForm()
     return render(request, 'CarSalon_App/auth/register.html', {'form': form})       
 
+# Admin View To View All Registered Users
 @superuser_required
 def view_all_users(request):
-   
     users = User.objects.values('first_name','last_name','username','email','is_superuser')
-
     context = {'users': users}
-
     return render (request,'CarSalon_App/user/index.html',context)
-
 
 '''
 Car Views 
@@ -62,9 +59,8 @@ def view_all_cars(request):
 @superuser_required
 def add_car(request):
     if request.method == 'POST':
-    
-        car = CarAstMar(
 
+        car = CarAstMar(
          model = request.POST['model'],
          year = request.POST['year'],
          color = request.POST['dropdown_color'],
@@ -76,9 +72,7 @@ def add_car(request):
          zeroToHundredAcceleration = request.POST['zeroToHundredAcceleration'],
          image = request.POST['image'],
          description = request.POST['description'],
-
         )             
-                      
         car.save()
         return redirect('/index')
     return render (request,'CarSalon_App/car/create.html')
@@ -108,11 +102,13 @@ def edit_car(request,id):
         return redirect('/index')
     return render (request,'CarSalon_App/car/edit.html',context)
 
+#View To Ask The Admin If It's Sure About Car Deletion
 @superuser_required
 def delete_car_confirmation(request,id):
     carToDelete = get_object_or_404(CarAstMar,id = id)
     context = {'car':carToDelete}
     return render (request,'CarSalon_App/car/delete.html',context)
+
 
 @superuser_required
 def delete_car(request,id):
@@ -122,25 +118,21 @@ def delete_car(request,id):
 
 @superuser_required
 def sell_car(request,id):
-   
     if request.method == 'POST':
         try:
-            
             car = get_object_or_404(CarAstMar,id = id)
-
             initialCarQuantity = car.quantity
-
             soldCar = SoldCars (carId = car, quantity = int(request.POST['quantity']) )
 
             if initialCarQuantity >= 0 and initialCarQuantity >= soldCar.quantity:
-
                 soldCar.save()
                 car.quantity = initialCarQuantity - soldCar.quantity
                 car.save()
                 return redirect('/car/sold')
             else:
                 messages.add_message(request, messages.INFO, 'Not Enough Amount .')
-                return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))   
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
         except Exception:
             messages.add_message(request, messages.INFO, 'Please Enter Valid Date .')
             return redirect('car/index') 
@@ -154,8 +146,6 @@ def view_all_sold_cars(request):
 
 @login_required
 def create_appointment(request,id):
-
-
      if request.method == 'POST':
         adminEmail  = 'rushhourapp9@gmail.com'
         adminPass   = "!e123456789"
@@ -163,7 +153,6 @@ def create_appointment(request,id):
         car = get_object_or_404(CarAstMar,id = id)
         appointment = Appointment(startDate = request.POST['startDate'],userId = request.user , carId = car )
         appointment.save()
-        
       
         app = appointment.carId.model
         user = appointment.userId.first_name
@@ -171,14 +160,21 @@ def create_appointment(request,id):
         emailText = 'Hello '+ user + ' ,You have booked a test drive for : '+  date + 'To try Aston Martin: '+ app
 
         send_appointment_email(adminEmail,adminPass,request.user.email,'New Appointment',emailText)
-        return redirect('/index')
+        return render(request,'CarSalon_App/appointment/appBooked.html')
+     else:
 
+        return redirect('/car/index') 
 @superuser_required
 def  view_all_appointments(request):
     appoinments = Appointment.objects.all()
     context = {'appointments':appoinments}
     return render (request,'CarSalon_App/appointment/index.html',context)
 
+@login_required    
+def appointment_booked(request):
+    return render(request,'CarSalon_App/appointments/appBooked.html')    
+
+@csrf_exempt
 def receive_email_from_user(request):
     send_info_email(request.POST['email'],request.POST['name'],request.POST['body'])
     return redirect('/index')   

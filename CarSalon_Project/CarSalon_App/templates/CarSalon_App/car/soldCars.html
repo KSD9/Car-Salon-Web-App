@@ -1,90 +1,84 @@
-{% extends "../index.html" %}
-{% block customHead %}
-    <link rel="stylesheet" type="text/css" href="../../../static/css/modalForms.css">
-    <link rel="stylesheet" type="text/css" href="../../../static/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
-    <link rel="stylesheet" href="../../../static/css/bootstrap-datetimepicker.css" />
+{% extends "../index.html" %} {% block customHead %}
 
+<link rel="stylesheet" type="text/css" href="../../../static/css/modalForms.css">
+<link rel="stylesheet" type="text/css" href="../../../static/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen"/>
+<link rel="stylesheet" href="../../../static/css/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" href="../../../static/css/table.css">
+<link rel="stylesheet" href="../../../static/css/custom.css">
+<link rel="stylesheet" href="../../../static/css/base.css">
+<link rel="stylesheet" href="../../../static/css/layout.css">
+<link rel="stylesheet" href="../../../static/css/responsive.css"> {% endblock customHead %}
 
-    <link rel="stylesheet" href="../../../static/css/table.css">
-    <link rel="stylesheet" href="../../../static/css/custom.css">
-    <link rel="stylesheet" href="../../../static/css/base.css">
-    <link rel="stylesheet" href="../../../static/css/layout.css">
-    <link rel="stylesheet" href="../../../static/css/responsive.css">
-
-    
-    {% endblock customHead %}
 <body>
 
-{% block main %}
+  {% block main %}
 
 
 
-<br><br><br><br><br><br><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <div class="body-wrapper">
+    <div class="wrapper clearfix">
+      <div id="main" class="grid-block">
+        <div id="maininner" class="grid-box">
 
-      <div class="wrapper clearfix">
-         
-             <div id="main" class="grid-block">
-     
-                 <div id="maininner" class="grid-box">
-     
-                     <section id="content" class="grid-block"><div id="system" class="servicePage">
-           
-           <div class="four-sixth last">
-             <div class="content-text">
-              
-     <div class='box with-header '><div class='box-header center '><strong>Sold Cars</strong></div><div class='box-content'><div class='text   center' >
-     </div>
-     <div class='table default'>
+          <section id="content" class="grid-block">
+            <div id="system" class="servicePage">
+              <div class="four-sixth last">
+                <div class="content-text">
+                  <div class='box with-header '>
+                    <div class='box-header center '>
+                      <strong>Sold Cars</strong>
+                    </div>
 
-     <table cellspacing="0" cellpadding="0">
-     <tbody>
-       <th>Model</th>
-       <th>Quantity</th>
-      
+                    <div class='box-content'>
+                      <div class='text   center'>
+                      </div>
+                      <div class='table default'>
 
-  {%for car in cars%}
-  <tr>
-    <td>{{car.carId.model}}</td>
-    <td>{{car.quantity}}</td>
-    
-  </tr>
- 
-  {%endfor%}  
-     </tbody>
-     </table>
-     
-     </div>
-     <p>
-     <span class='spacer small'></span></p>
-     <div class='text   center' >
-     </div>
-     </div></div>
-     <p><b> </b></p>
-     <p>&nbsp;</p>
-     <p>&nbsp;</p>
-     
-             </div>
-     
-           </div>
-     
-         </div>
-     
-       </article>
-     
-     </div>
-     </section>
-         </div>
-                 <!-- maininner end -->
-     
-             </div>
-         <!-- main end -->
-         
-     </div>
-     
-     </div>
+                        <table cellspacing="0" cellpadding="0">
+                          <tbody>
+                            <th>Model</th>
+                            <th>Quantity</th>
 
-{% endblock main %}   
 
+                            {%for car in cars%}
+                              <tr>
+                                <td>{{car.carId.model}}</td>
+                                <td>{{car.quantity}}</td>
+                              </tr>
+                            {%endfor%}
+                          </tbody>
+                        </table>
+
+                      </div>
+                      <p>
+                        <span class='spacer small'></span>
+                      </p>
+                      <div class='text   center'>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    <b> </b>
+                  </p>
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
+                </div>
+              </div>
+            </div>
+            </article>
+        </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  </div>
+  {% endblock main %}
 </body>
 </html>

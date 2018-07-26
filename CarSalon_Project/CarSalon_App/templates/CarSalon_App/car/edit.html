@@ -1,80 +1,82 @@
 {% extends "../index.html" %}
 
 <body>
-{% block main %}
+    {% block main %}
 
 
 
     <section id="newsletter" class="parallax-section">
-            <div class="container">
-                <div class="row">
-    <div class="newsletter_detail">
-        <form action="/car/edit/{{car.id}}" method="post">
-            <h1>Edit Car</h1>
-            
-            {% csrf_token %}
-            
-            <label for="password">Model:</label>
-            <div class="form-group">
-            
-                <input type="text" id="model" name="model" placeholder="Model" class="form-control" value = "{{car.model}}" required>
+        <div class="container">
+            <div class="row">
+                <div class="newsletter_detail">
+                    <form action="/car/edit/{{car.id}}" method="post">
+                        <h1>Edit Car</h1>
+
+                        {% csrf_token %}
+
+                        <label for="password">Model:</label>
+                        <div class="form-group">
+
+                            <input type="text" id="model" name="model" placeholder="Model" class="form-control" value="{{car.model}}" required>
+                        </div>
+
+                        <label for="password">Year:</label>
+                        <div class="form-group">
+                            <input type="number" id="year" name="year" class="form-control" min="1960" value="{{car.year}}" required>
+                        </div>
+                        <label for="password">Color:</label>
+                        <div class="form-group">
+                            <select name="dropdown_color" class="form-control">
+                                <option value="black">Black</option>
+                                <option value="grey">Grey</option>
+                            </select>
+                        </div>
+                        <label for="password">Price:</label>
+                        <div class="form-group">
+                            <input type="number" id="carPrice" name="carPrice" class="form-control" min="0" value="{{car.price}}" required>
+                        </div>
+                        <label for="password">Quantity:</label>
+                        <div class="form-group">
+                            <input type="number" id="quantity" name="quantity" class="form-control" min="0" value="{{car.quantity}}" required>
+                        </div>
+                        <label for="password">Horse Powers:</label>
+                        <div class="form-group">
+                            <input type="number" id="horsePowers" name="horsePowers" class="form-control" min="0" value="{{car.horsePowers}}" required>
+                        </div>
+                        <label for="password">Engine Type:</label>
+                        <div class="form-group">
+                            <select name="dropdown_engineType" class="form-control">
+                                <option value="V12 Petrolium">V12 Petrolium</option>
+                                <option value="V8 Disel">V8 Disel</option>
+                            </select>
+                        </div>
+                        <label for="password">Top Speed:</label>
+                        <div class="form-group">
+                            <input type="number" id="topSpeed" name="topSpeed" class="form-control" min="0" value="{{car.topSpeed}}" required>
+                        </div>
+                        <label for="password">0-100(km/h) Acceleration :</label>
+                        <div class="form-group">
+                            <input type="number" id="zeroToHundredAcceleration" name="zeroToHundredAcceleration" min="0" value="{{car.zeroToHundredAcceleration}}"
+                                class="form-control" required>
+                        </div>
+
+                        <label for="password">Image :</label>
+                        <div class="form-group">
+                            <input type="text" id="image" name="image" class="form-control" value="{{car.image}}" required>
+                        </div>
+                        <label for="password">Description :</label>
+                        <div class="form-group">
+                            <input type="text" id="description" name="description" class="form-control" value="{{car.description}}" required>
+                        </div>
+                        <div class="form-group">
+                            <input name="submit" type="submit" class="form-control" id="submit" value="Edit">
+                        </div>
+                    </form>
+                </div>
             </div>
-            
-            <label for="password">Year:</label>
-            <div class="form-group">
-                <input type="number" id="year" name="year" class="form-control" min="1960" value = "{{car.year}}"   required>
-            </div>
-            <label for="password">Color:</label>
-            <div class="form-group">
-                <select name="dropdown_color" class="form-control">
-                    <option value="black">Black</option>
-                    <option value="grey">Grey</option>
-                </select>
-            </div>
-            <label for="password">Price:</label>
-            <div class="form-group">
-                <input type="number" id="carPrice" name="carPrice" class="form-control" min="0" value="{{car.price}}" required>
-            </div>
-            <label for="password">Quantity:</label>
-            <div class="form-group">
-                <input type="number" id="quantity" name="quantity" class="form-control" min="0" value = "{{car.quantity}}"  required>
-            </div>
-            <label for="password">Horse Powers:</label>
-            <div class="form-group">
-                <input type="number" id="horsePowers" name="horsePowers" class="form-control" min="0"  value = "{{car.horsePowers}}" required>
-            </div>
-            <label for="password">Engine Type:</label>
-            <div class="form-group">
-                <select name="dropdown_engineType" class="form-control" >
-                    <option value="V12 Petrolium">V12 Petrolium</option>
-                    <option value="V8 Disel">V8 Disel</option>
-                </select>
-            </div>
-            <label for="password">Top Speed:</label>
-            <div class="form-group">
-                <input type="number" id="topSpeed" name="topSpeed" class="form-control" min="0" value = "{{car.topSpeed}}" required>
-            </div>
-            <label for="password">0-100(km/h) Acceleration  :</label>
-            <div class="form-group">
-                <input type="number" id="zeroToHundredAcceleration" name="zeroToHundredAcceleration" min="0"  value ="{{car.zeroToHundredAcceleration}}" class="form-control" required>
-            </div>
-    
-            <label for="password">Image  :</label>
-            <div class="form-group">
-                <input type="text" id="image" name="image" class="form-control"  value = "{{car.image}}" required>
-            </div>
-            <label for="password">Description  :</label>
-            <div class="form-group">
-                <input type="text" id="description" name="description" class="form-control" value = "{{car.description}}"  required>
-            </div>
-            <div class="form-group">
-                    <input name="submit" type="submit" class="form-control" id="submit" value="Edit">
-            </div>
-        </form>
         </div>
-        </div>
-        </div>
-        </section>
-{% endblock main %}    
-    </body>
-    </html>
+    </section>
+    {% endblock main %}
+</body>
+
+</html>

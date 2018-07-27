@@ -5,7 +5,7 @@
 - Clone project repository
 - Open folder CarSalon_App_project , and run the following commands:
 - Important ! Run This Command In Your Teminal Only Once To Initialize The Project Files:
-- python3 manage.py projectSetup.py
+- python3 projectSetup.py
 - The Script will create the db / run all migrations / feed the db with initial data. / run the server.
 - Initial Admin Credentials are : Username- admin | Pass- ie123456
 - After that run the project by using:

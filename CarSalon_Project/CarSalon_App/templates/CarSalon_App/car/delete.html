@@ -7,7 +7,26 @@
 <link rel="stylesheet" href="../../../static/css/custom.css">
 <link rel="stylesheet" href="../../../static/css/base.css">
 <link rel="stylesheet" href="../../../static/css/layout.css">
-<link rel="stylesheet" href="../../../static/css/responsive.css"> {% endblock customHead %}
+<link rel="stylesheet" href="../../../static/css/responsive.css"> 
+{% endblock customHead %}
+
+{% block car_models_about_nav_buttons_override_logged %}
+<li>
+    <a href="/index#trainer" class="smoothScroll">Models</a>
+</li>
+<li>
+    <a href="/index#about" class="smoothScroll">About</a>
+</li>
+{% endblock car_models_about_nav_buttons_override_logged %}
+
+{% block car_models_about_nav_buttons_override_not_logged %}
+<li>
+   <a href="/index#trainer" class="smoothScroll">Models</a>
+</li>
+<li>
+    <a href="/index#about" class="smoothScroll">About</a>
+</li>
+{% endblock car_models_about_nav_buttons_override_not_logged %}
 
 <body>
     {% block main %}

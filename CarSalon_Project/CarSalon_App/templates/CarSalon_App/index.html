@@ -53,16 +53,21 @@
                     <li>
                         <a href="/car/sold" class="smoothScroll">Sold Cars</a>
                     </li>
-                    {%endif%} {% if user.is_authenticated %}
+                    {%endif%} 
+                    
+                    {% if user.is_authenticated %}
                     <li>
                         <a href="/index" class="smoothScroll">Home</a>
+                    </li>
+                    {% block car_models_about_nav_buttons_override_logged %}
+                    <li>
+                        <a href="#trainer" class="smoothScroll">Models</a>
                     </li>
                     <li>
                         <a href="#about" class="smoothScroll">About</a>
                     </li>
-                    <li>
-                            <a href="#trainer" class="smoothScroll">Models</a>
-                    </li>
+                    {% endblock car_models_about_nav_buttons_override_logged %}
+                   
                     <li>
                         <a href="/car/index" class="smoothScroll">Cars</a>
                     </li>
@@ -74,14 +79,16 @@
                     <li>
                         <a href="/index" class="smoothScroll">Home</a>
                     </li>
+                    {% block car_models_about_nav_buttons_override_not_logged %}
                     <li>
-                            <a href="#trainer" class="smoothScroll">Models</a>
+                        <a href="#trainer" class="smoothScroll">Models</a>
                     </li>
+                    <li>
+                        <a href="#about" class="smoothScroll">About</a>
+                    </li>
+                    {% endblock car_models_about_nav_buttons_override_not_logged %}
                     <li>
                         <a href="/car/index" class="smoothScroll">Cars</a>
-                    </li>
-                    <li>
-                        <a href="/index#about" class="smoothScroll">About</a>
                     </li>
                     <li>
                         <a href="/login" class="smoothScroll">Login</a>

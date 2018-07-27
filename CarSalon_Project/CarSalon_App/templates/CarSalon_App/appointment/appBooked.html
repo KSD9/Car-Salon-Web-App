@@ -1,5 +1,23 @@
 {% extends "../index.html" %} 
 
+{% block car_models_about_nav_buttons_override_logged %}
+<li>
+    <a href="/index#trainer" class="smoothScroll">Models</a>
+</li>
+<li>
+    <a href="/index#about" class="smoothScroll">About</a>
+</li>
+{% endblock car_models_about_nav_buttons_override_logged %}
+
+{% block car_models_about_nav_buttons_override_not_logged %}
+<li>
+   <a href="/index#trainer" class="smoothScroll">Models</a>
+</li>
+<li>
+    <a href="/index#about" class="smoothScroll">About</a>
+</li>
+{% endblock car_models_about_nav_buttons_override_not_logged %}
+
 {% block main %}
 <br><br><br><br><br><br><br><br><br><br><br><br>
 <img src="https://media.giphy.com/media/10zdNpfpsoV4sM/giphy.gif" class="img-responsive" style="float:left">

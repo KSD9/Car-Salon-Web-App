@@ -8,19 +8,12 @@ urlpatterns = [
     path('index',                  views.application_index,         name ="index"),
 
 #Auth Views
-
-    path('login/',                 auth_views.login, {'template_name': 'CarSalon_App/auth/login.html'},  
-                                                                    name='login'),
-
+    path('login/',                 auth_views.login, {'template_name': 'CarSalon_App/auth/login.html'},  name='login'),
     path('register/',              views.register,                  name='login'),
     path('users',                  views.view_all_users,            name='usrs'),
-
-    path('logout/',                auth_views.logout,  {'next_page': '/index'},                         
-                                                                    name='logout'),
-
+    path('logout/',                auth_views.logout,  {'next_page': '/index'},                          name='logout'),
 
 #Car Views
-
     path('car/create',             views.add_car,                   name="addCar"),
     path('car/details/<id>',       views.details_car,               name="addCar"),
     path('car/edit/<id>',          views.edit_car,                  name="editCar"),

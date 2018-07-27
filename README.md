@@ -2,6 +2,7 @@
  Django 2.0 + Python 3 
 
 # To run the app:
+- You must have Python 3 and Django 2.0 installed.
 - Clone project repository
 - Open folder CarSalon_App_project , and run the following commands:
 - Important ! Run This Command In Your Teminal Only Once To Initialize The Project Files:

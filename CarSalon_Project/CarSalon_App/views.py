@@ -75,7 +75,7 @@ def add_car(request):
          description = request.POST['description'],
         )             
         car.save()
-        return redirect('/index')
+        return redirect('/car/index')
     return render (request,'CarSalon_App/car/create.html')
 
 def details_car(request,id):
@@ -100,7 +100,7 @@ def edit_car(request,id):
         carToEdit.image = request.POST['image']
         carToEdit.description = request.POST['description']
         carToEdit.save()
-        return redirect('/index')
+        return redirect('/car/index')
     return render (request,'CarSalon_App/car/edit.html',context)
 
 #View To Ask The Admin If It's Sure About Car Deletion
@@ -115,7 +115,7 @@ def delete_car_confirmation(request,id):
 def delete_car(request,id):
     carToDelete = get_object_or_404(CarAstMar,id = id)
     carToDelete.delete()
-    return redirect('/index')
+    return redirect('/car/index')
 
 @superuser_required
 def sell_car(request,id):

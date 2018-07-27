@@ -11,7 +11,7 @@
 - After that run the project by using:
 - python3 manage.py runserver
  
-Then open your localhost with your local port. 
+
 
 # Roles: User, Admin, Not Logged User
 

@@ -21,7 +21,7 @@ urlpatterns = [
     path('car/deleteConfirm/<id>', views.delete_car_confirmation,   name="deleteCarConfimr"),
     path('car/delete/<id>',        views.delete_car,                name="deleteCar"),
     path('car/index',              views.view_all_cars,             name="cars"),
-    path('car/sell/<id>',          views.sell_car,                  name="sellCar"),
+    path('car/sad/<id>',         views.sell_car,                  name="sellCar"),
     path('car/sold',               views.view_all_sold_cars,        name="soldCars"),
 
 # Rent Cars Views
@@ -30,6 +30,10 @@ urlpatterns = [
     path('car/rent/index',         views.rent_cars_index,           name="rentedCars"),
     path('car/rent/delete/<id>',   views.delete_rent_car,           name="rentedCars"),
 
+# Sell Cars Views    
+    path('car/sell/index',         views.sell_car_index,             name="sellCars"),
+    path('car/sell/request/<id>',  views.sell_car_request,           name="sellCars"),
+    path('car/request', views.index_sell_car_request,           name="sellCars"),
 
 
 #Appointment Views

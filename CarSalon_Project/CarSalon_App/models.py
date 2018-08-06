@@ -29,6 +29,7 @@ class CarAstMar(models.Model):
     image                     = models.ImageField()
     isForRent                 = models.BooleanField(default = False)
     isRented                  = models.BooleanField(default = False)
+    sellingStatus             = models.CharField(max_length = 300 , default = "Available")
     description               = models.CharField(max_length = 300)
 
 

@@ -142,26 +142,8 @@ def delete_car(request,id):
     carToDelete.delete()
     return redirect('/car/index')
 
-@superuser_required
-def sell_car(request,id):
-    if request.method == 'POST':
-        try:
-            car = get_object_or_404(CarAstMar,id = id)
-            initialCarQuantity = car.quantity
-            soldCar = SoldCars (carId = car, quantity = int(request.POST['quantity']) )
 
-            if initialCarQuantity >= 0 and initialCarQuantity >= soldCar.quantity:
-                soldCar.save()
-                car.quantity = initialCarQuantity - soldCar.quantity
-                car.save()
-                return redirect('/car/sold')
-            else:
-                messages.add_message(request, messages.INFO, 'Not Enough Amount .')
-                return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
-        except Exception:
-            messages.add_message(request, messages.INFO, 'Please Enter Valid Date .')
-            return redirect('car/index') 
     
 @superuser_required    
 def view_all_sold_cars(request):
@@ -259,3 +241,46 @@ def delete_rent_car(request,id):
     else:
         return render(request,'CarSalon_App/back_office/rent_car/index.html')
 
+
+'''
+Sell Car Views
+'''
+
+def sell_car_index(request):
+    cars = CarAstMar.objects.filter(isForRent = False)
+    context = {'cars':cars}
+
+    return render(request,'CarSalon_App/back_office/sell_car/index.html',context)   
+
+def sell_car_request(request,id):
+    car = get_object_or_404(CarAstMar,id = id)
+    car.sellingStatus = "Sell Request"
+    car.save()
+    return redirect('/car/sell/index') 
+
+def index_sell_car_request(request):
+    cars = CarAstMar.objects.filter(sellingStatus = "Sell Request")
+    context = {'cars':cars}
+
+    return render(request,'CarSalon_App/back_office/sell_car/sell_request.html',context)   
+
+def sell_car(request,id):
+    if request.method == 'POST':
+        try:
+            car = get_object_or_404(CarAstMar,id = id)
+            initialCarQuantity = car.quantity
+            soldCar = SoldCars (carId = car, quantity = 1,date = datetime.datetime.now(),employeId = request.user )
+
+            if initialCarQuantity >= 0 and initialCarQuantity >= soldCar.quantity:
+                soldCar.save()
+                car.quantity = initialCarQuantity - soldCar.quantity
+                car.sellingStatus = "Sold"
+                car.save()
+                return redirect('/car/sold')
+            else:
+                messages.add_message(request, messages.INFO, 'Not Enough Amount .')
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+        except Exception:
+            messages.add_message(request, messages.INFO, 'Please Enter Valid Date .')
+            return redirect('car/index') 

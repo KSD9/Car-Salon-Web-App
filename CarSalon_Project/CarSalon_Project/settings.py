@@ -25,8 +25,11 @@ SECRET_KEY = ')n&a609p*sw*8+e0dsn9#j!@j2x_&8njan0+%#3@h3j1iv)f-m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
+AUTH_USER_MODEL = 'CarSalon_App.MyUser'
 
+MEDIA_URL = '/static/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'CarSalon_App/static/images')
 
 # Application definition
 
@@ -120,5 +123,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/index'
+LOGIN_REDIRECT_URL = '/admin'
 LOGIN_URL = '/login'

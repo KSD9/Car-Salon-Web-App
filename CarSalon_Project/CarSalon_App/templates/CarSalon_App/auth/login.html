@@ -6,8 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="newsletter_detail">
-                    <form method="post">
-                        <form method="post">
+                        <form method="post" id="loginForm">
                             <h1>Login</h1>
                             {% csrf_token %} 
                             {{ form.as_p }}
@@ -20,5 +19,7 @@
         </div>
     </section>
     {% endblock main %}
+
+   
 </body>
 </html>

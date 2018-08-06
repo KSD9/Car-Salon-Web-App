@@ -367,7 +367,8 @@
             </div>
         </section>
     </footer>
-    {% endblock main %} {% block scripts %}
+    {% endblock main %} 
+    {% block scripts %}
     <script src="../../static/js/jquery.js"></script>
     <script src="../../static/js/bootstrap.min.js"></script>
     <script src="../../static/js/jquery.parallax.js"></script>
@@ -428,7 +429,13 @@
                 });
             }
         }
-    </script> {% endblock scripts %}
+       
+    </script> 
+    {% block customScripts %}
+    
+    {% endblock customScripts %}
+    
+    {% endblock scripts %}
 </body>
 
 </html>

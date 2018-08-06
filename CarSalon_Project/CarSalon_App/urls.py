@@ -1,6 +1,7 @@
 from django.urls import path
 from CarSalon_App import views
 from django.contrib.auth import views as auth_views
+from django.conf.urls import handler404,handler500
 
 urlpatterns = [
 # App Entry Urls
@@ -29,5 +30,8 @@ urlpatterns = [
 
 #Email Sendind View From App Index Page
     path('index/sendEmail',         views.receive_email_from_user,  name="mail"),
+    path('admin/', views.back_office_index),
 
 ]
+
+handler404 = views.error_404

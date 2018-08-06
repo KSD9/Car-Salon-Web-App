@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
-from .templates.CarSalon_App.auth.registerForm import RegisterForm 
+from .registerForm import RegisterForm 
 from django.contrib.auth.models import User
-from .models import CarAstMar,SoldCars,Appointment
+from .models import CarAstMar,SoldCars,Appointment,MyUser,SystemLog
 from django.shortcuts import get_list_or_404, get_object_or_404
 from .services.emailSender import send_appointment_email,send_info_email
 from django.contrib.auth.decorators import login_required , user_passes_test
@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.http import HttpResponse , HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.views.decorators.csrf import csrf_exempt
+import datetime
 
 # Custom Decorator To Check If Logged User Has Admin Rights
 def superuser_required(view_func=None, login_url='/index'):
@@ -20,6 +21,29 @@ def superuser_required(view_func=None, login_url='/index'):
     if view_func:
         return actual_decorator(view_func)
     return actual_decorator
+
+def RentManager_required(view_func=None, login_url='/index'):
+
+    actual_decorator = user_passes_test(
+        lambda u: u.is_active and u.role == 'RentManager',
+        login_url=login_url,
+    )
+    if view_func:
+        return actual_decorator(view_func)
+    return actual_decorator   
+
+
+def sys_log(request,user,action,dateTime,model):
+    sysLog = SystemLog(
+        userId = user,
+        action = action,
+        dateTime = dateTime,
+        model = model
+    
+
+    )
+    sysLog.save()
+
 #Application Index
 def application_index(request):
     return render(request,'../templates/CarSalon_App/index.html')
@@ -27,7 +51,7 @@ def application_index(request):
 # Veiw For User Registration
 def register(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = RegisterForm(request.POST, request.FILES )
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -43,7 +67,7 @@ def register(request):
 # Admin View To View All Registered Users
 @superuser_required
 def view_all_users(request):
-    users = User.objects.values('first_name','last_name','username','email','is_superuser')
+    users = MyUser.objects.values('first_name','last_name','username','email','is_superuser')
     context = {'users': users}
     return render (request,'CarSalon_App/user/index.html',context)
 
@@ -75,11 +99,12 @@ def add_car(request):
          description = request.POST['description'],
         )             
         car.save()
+        sys_log(request,request.user,'create',datetime.datetime.now(),'car')
         return redirect('/car/index')
     return render (request,'CarSalon_App/car/create.html')
 
 def details_car(request,id):
-    car = CarAstMar.objects.get( id = id)
+    car = get_object_or_404(CarAstMar,id = id)
     context = {'car' : car}
     return render (request,'CarSalon_App/car/details.html',context)
 
@@ -179,3 +204,10 @@ def appointment_booked(request):
 def receive_email_from_user(request):
     send_info_email(request.POST['email'],request.POST['name'],request.POST['body'])
     return redirect('/index')   
+
+def error_404(request):
+    return render(request,'CarSalon_App/error_handlers/404.html')    
+
+@superuser_required
+def back_office_index (request):
+     return render(request,'CarSalon_App/back_office/index.html')    

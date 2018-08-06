@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="newsletter_detail">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <h1>REGISTER</h1>
                         {% if messages %} 
                         {% for message in messages %}
@@ -17,7 +17,7 @@
                         {% endif %} 
 
                         {% csrf_token %}
-
+                        
                          {% for field in form %}
                             <div class="form-group">
 
@@ -35,5 +35,12 @@
         </div>
     </section>
     {% endblock main %}
+
+    {% block customScripts %}
+ 
+
+    {% endblock customScripts %}
+
+
 </body>
 </html>

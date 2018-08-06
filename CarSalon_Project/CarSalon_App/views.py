@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .registerForm import RegisterForm 
 from django.contrib.auth.models import User
-from .models import CarAstMar,SoldCars,Appointment,MyUser,SystemLog
+from .models import CarAstMar,SoldCars,Appointment,MyUser,SystemLog,RentedCars
 from django.shortcuts import get_list_or_404, get_object_or_404
 from .services.emailSender import send_appointment_email,send_info_email
 from django.contrib.auth.decorators import login_required , user_passes_test
@@ -211,3 +211,51 @@ def error_404(request):
 @superuser_required
 def back_office_index (request):
      return render(request,'CarSalon_App/back_office/index.html')    
+
+
+'''
+Rent Cars Views
+'''
+def rent_cars_index(request):
+    cars = RentedCars.objects.all()
+    context = {'cars':cars}
+    return render(request,'CarSalon_App/back_office/rent_car/index.html',context)   
+
+def create_car_for_rent(request):
+    cars = CarAstMar.objects.filter(isRented = False , isForRent=True)
+    context = {'cars':cars}
+    if request.method == 'POST':
+        carModel = CarAstMar.objects.get(id = request.POST['carModel'] )
+        rentCar = RentedCars(carId=carModel,startDate=request.POST['startDate'],endDate=request.POST['endDate'], employeId = request.user)
+        rentCar.save()
+        carModel.isRented = True
+        carModel.save()
+        return redirect('/car/rent/index') 
+    else:
+        return render(request,'CarSalon_App/back_office/rent_car/create.html',context)   
+
+
+def edit_car_for_rent(request,id):
+    car = get_object_or_404(RentedCars,id = id)
+    context = {'car':car}
+    if request.method == 'POST':
+        car.startDate = request.POST['startDate']
+        car.endDate   = request.POST['endDate']
+        car.save()
+        return redirect('/car/rent/index') 
+    else:
+        return render(request,'CarSalon_App/back_office/rent_car/edit.html',context)
+
+
+def delete_rent_car(request,id):
+    car = get_object_or_404(RentedCars,id = id)
+    if request.method == 'POST':
+        carId = car.carId.id
+        car.delete()
+        carAst = CarAstMar.objects.get(id = carId)
+        carAst.isRented = False
+        carAst.save()
+        return redirect('/car/rent/index') 
+    else:
+        return render(request,'CarSalon_App/back_office/rent_car/index.html')
+

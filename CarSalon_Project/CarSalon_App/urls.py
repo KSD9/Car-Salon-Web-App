@@ -24,13 +24,23 @@ urlpatterns = [
     path('car/sell/<id>',          views.sell_car,                  name="sellCar"),
     path('car/sold',               views.view_all_sold_cars,        name="soldCars"),
 
+# Rent Cars Views
+    path('car/rent/create',        views.create_car_for_rent ,      name="rentCar"),
+    path('car/rent/edit/<id>',     views.edit_car_for_rent,         name="editRentedCar"),
+    path('car/rent/index',         views.rent_cars_index,           name="rentedCars"),
+    path('car/rent/delete/<id>',   views.delete_rent_car,           name="rentedCars"),
+
+
+
 #Appointment Views
     path('appointment/create/<id>', views.create_appointment,       name="appCreate"),
     path('appointment/index',       views.view_all_appointments,    name="appIndex"),
 
 #Email Sendind View From App Index Page
     path('index/sendEmail',         views.receive_email_from_user,  name="mail"),
-    path('admin/', views.back_office_index),
+    path('admin/',                  views.back_office_index),
+
+
 
 ]
 

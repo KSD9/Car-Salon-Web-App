@@ -43,6 +43,9 @@ class SoldCars(models.Model):
     objects                   = models.Manager()
     carId                     = models.ForeignKey (CarAstMar,on_delete=models.CASCADE , related_name="carsSold")
     quantity                  = models.PositiveIntegerField()
+    date                      = models.DateTimeField()
+    employeId                 = models.ForeignKey (MyUser,on_delete=models.CASCADE , related_name="soldCarUser")
+    
 
 class SystemLog(models.Model):
     objects                   = models.Manager()
@@ -54,5 +57,6 @@ class SystemLog(models.Model):
 class RentedCars(models.Model):
     objects                   = models.Manager()
     carId                     = models.ForeignKey (CarAstMar,on_delete=models.CASCADE , related_name="carsRented")
-    startDate                 = models.DateTimeField()
-    endDate                   = models.DateTimeField()
+    startDate                 = models.DateField()
+    endDate                   = models.DateField()
+    employeId                 = models.ForeignKey (MyUser,on_delete=models.CASCADE , related_name="rentCarUser")

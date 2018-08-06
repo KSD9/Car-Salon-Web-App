@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../../../../static/css/modalForms.css">
+</head>
+
+<body>
+    <table>
+        <th>Model:</th>
+        <th>Start Date:</th>
+        <th>End Date:</th>
+        <th>Employe:</th>
+        <th></th>
+        <tr>
+            {%for car in cars%}
+            <td>{{car.carId.model}}</td>
+            <td>{{car.startDate}}</td>
+            <td>{{car.endDate}}</td>
+            <td>{{car.employeId.username}}</td>
+            <td>
+                <button id="btnDeleteRented" onclick="delete_rented_car({{car.id}})">Return Car</button>
+
+        </tr>
+       
+    </table>
+    
+    <div id="mDeleteRented-{{car.id}}" class="modalDeleteRented">
+        <div class="modalDeleteRented-content">
+            <span class="closeDeleteRented">&times;</span>
+            <form action="/car/rent/delete/{{car.id}}" method="post">
+                <h1>Sell Carr</h1>
+                {% csrf_token %}
+                <h3>Are You Sure ? 
+                   
+                </h3>
+               
+                <div class="form-group">
+                    <button type="submit" value="Delete" class="btn-signin">Return</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {%endfor%}
+
+    <script>
+
+        function delete_rented_car(id){
+        // Get the modal
+        var modalDeleteRented = document.getElementById('mDeleteRented-'+ id);
+
+        // Get the <span> element that closes the modal
+        var spanDeleteRented = document.getElementsByClassName("closeDeleteRented"  )[0];
+
+       
+        modalDeleteRented.style.display="block";
+        // When the user clicks on <span> (x), close the modal
+        spanDeleteRented.onclick = function () {
+            modalDeleteRented.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+
+        
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modalDeleteRented) {
+                modalDeleteRented.style.display = "none";
+              
+            }
+        }
+    }
+
+    </script>
+</body>
+
+</html>

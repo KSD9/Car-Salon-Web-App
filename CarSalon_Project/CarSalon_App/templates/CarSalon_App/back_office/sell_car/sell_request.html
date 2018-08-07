@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <table>
-        <th>Model</th>
+{% extends "../index.html" %}
+ {% block table %}
+
+<h1>Sell Requests</h1>
+<br>
+<thead>
+    <tr>
+        <th>
+            Model
+        </th>
         <th></th>
-        {% for car in cars %}
-        <tr>
-            <td>{{car.model}}</td>
-            <td>{{car.id}}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+    </tr>
+</thead>
+<tbody>
+    {%for car in cars%}
+    <tr>
+        <td>{{car.model}}</td>
+        <td>
+            <a href="/car/sell/{{car.id}}">Sell Car</a>
+        </td>
+    </tr>
+    {%endfor%}
+</tbody>
+{% endblock table %}

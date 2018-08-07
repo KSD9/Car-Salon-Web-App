@@ -1,0 +1,25 @@
+{% extends "../index.html" %}
+
+{% block table %}
+<thead>
+    <tr>
+        <th>Action</th>
+        <th>Date</th>
+        <th>Model</th>
+        <th>User</th>
+        <th>Role</th>
+    </tr>
+</thead>
+<tbody>
+    {%for log in logs%}
+    <tr>
+       <td>{{log.action}}</td>
+       <td>{{log.dateTime}}</td>
+       <td>{{log.model}}</td>
+       <td>{{log.userId.username}}</td>
+       <td>{{log.userId.role}}</td>
+
+    </tr>
+    {%endfor%}
+</tbody>
+{% endblock table %}

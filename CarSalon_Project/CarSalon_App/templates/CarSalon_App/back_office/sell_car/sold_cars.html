@@ -1,0 +1,25 @@
+{% extends "../index.html" %}
+ {% block table %}
+
+<h1>Sold Cars</h1>
+<br>
+<thead>
+    <tr>
+        <th>Model</th>
+        <th>Quantity</th>
+        <th>Date</th>
+        <th>User</th>
+    </tr>
+</thead>
+<tbody>
+    {%for car in cars%}
+    <tr>
+        <td>{{car.carId.model}}</td>
+        <td>{{car.quantity}}</td>
+        <td>{{car.date}}</td>
+        <td>{{car.employeId.username}}</td>
+       
+    </tr>
+    {%endfor%}
+</tbody>
+{% endblock table %}

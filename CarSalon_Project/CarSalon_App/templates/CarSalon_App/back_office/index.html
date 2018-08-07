@@ -1,25 +1,262 @@
+{% block head %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Required meta tags-->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Tables</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="../../../static/css/font-face.css" rel="stylesheet" media="all">
+    <link href="../../../static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../../../static/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="../../../static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="../../../static/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="../../../static/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../../../static/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../../../static/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../../../static/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../../../static/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../../../static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../../../static/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../../../static/css/theme.css" rel="stylesheet" media="all"> {% block customHead %} {% endblock customHead %}
+
 </head>
-<header>
-    <nav>
-        <ul>
-            <li>Cars</li>
-            <li>Users</li>
-            <li>Appointments</li>
-            <li>Sold Cars</li>
-            <li>Rented Cars</li>
-            <li>System Log</li>
-            <li>Profile</li>
-        </ul>
-    </nav>
-</header>
-<body>
-    Welcome to Back office
+{% endblock head %}
+
+<body class="animsition">
+
+
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="index.html">
+                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+
+
+                        <li>
+                            <a href="form.html">
+                                <i class="far fa-check-square"></i>Forms</a>
+                        </li>
+                        <li>
+                            <a href="form.html">
+                                <i class="far fa-check-square"></i>Forms</a>
+                        </li>
+                        <li>
+                            <a href="form.html">
+                                <i class="far fa-check-square"></i>Forms</a>
+                        </li>
+
+                        <li>
+                            <a href="form.html">
+                                <i class="far fa-check-square"></i>Forms</a>
+                        </li>
+                        <li>
+                            <a href="form.html">
+                                <i class="far fa-check-square"></i>Forms</a>
+                        </li>
+                        <li>
+                            <a href="form.html">
+                                <i class="far fa-check-square"></i>Forms</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+
+                            <li>
+                                    <a href="/car/rent/index">
+                                        <i class="far fa-check-square"></i>Rent Cars</a>
+                                </li>
+                                <li>
+                                    <a href="/car/sll/index">
+                                        <i class="far fa-check-square"></i>Sell Cars</a>
+                                </li>
+                                <li>
+                                    <a href="/car/sold">
+                                        <i class="far fa-check-square"></i>Sold Cars</a>
+                                </li>
+        
+                                <li>
+                                    <a href="/car/request">
+                                        <i class="far fa-check-square"></i>Sell Requests</a>
+                                </li>
+                                <li>
+                                    <a href="/user/index">
+                                        <i class="far fa-check-square"></i>Users</a>
+                                </li>
+                                <li>
+                                    <a href="/sysLog/index">
+                                        <i class="far fa-check-square"></i>System Log</a>
+                                </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+
+                            <div class="header-button">
+                                <div class="noti-wrap">
+                                    <div class="noti__item js-item-menu">
+
+
+                                    </div>
+                                    <div class="noti__item js-item-menu">
+
+                                    </div>
+                                    <div class="noti__item js-item-menu">
+
+                                    </div>
+
+                                    <div class="account-wrap">
+                                        <div class="account-item clearfix js-item-menu">
+                                            <div class="image">
+                                                <img src="../../../static/images/static/images/bill-gates.jpg" alt="John Doe" />
+                                            </div>
+                                            <div class="content">
+                                                <a class="js-acc-btn" href="#">john doe</a>
+                                            </div>
+                                            <div class="account-dropdown js-dropdown">
+                                                <div class="info clearfix">
+                                                    <div class="image">
+                                                        <a href="#">
+                                                            <img src="../../../static/images/static/images/bill-gates.jpg" alt="John Doe" />
+                                                        </a>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h5 class="name">
+                                                            <a href="#">john doe</a>
+                                                        </h5>
+                                                        <span class="email">johndoe@example.com</span>
+                                                    </div>
+                                                </div>
+                                                <div class="account-dropdown__body">
+
+                                                    <div class="account-dropdown__item">
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="account-dropdown__footer">
+                                                    <a href="/logout">
+                                                        <i class="zmdi zmdi-power"></i>Logout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </header>
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            {% block main %}
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            {% block customContent %}
+
+                            <div class="col-lg-9">
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        {% block table %} {% endblock table %}
+                                    </table>
+
+
+                                </div>
+                            </div>
+                            {% endblock customContent %}
+
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+    {% endblock main %}
+    <!-- Jquery JS-->
+    <script src="../../../static/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="../../../static/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../../../static/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="../../../static/vendor/slick/slick.min.js">
+    </script>
+    <script src="../../../static/vendor/wow/wow.min.js"></script>
+    <script src="../../../static/vendor/animsition/animsition.min.js"></script>
+    <script src="../../../static/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="../../../static/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../../../static/vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="../../../static/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../../../static/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../../static/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../../../static/vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="../../../static/js/main.js"></script> {% block customScripts %} {% endblock customScripts %}
 </body>
+
 </html>
+<!-- end document-->

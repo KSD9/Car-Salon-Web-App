@@ -12,6 +12,17 @@ from django.views.decorators.csrf import csrf_exempt
 import datetime
 
 # Custom Decorator To Check If Logged User Has Admin Rights
+def logged_user(view_func=None, login_url='/login'):
+
+    actual_decorator = user_passes_test(
+        lambda u: u.is_active,
+        login_url=login_url,
+    )
+    if view_func:
+        return actual_decorator(view_func)
+    return actual_decorator
+
+
 def superuser_required(view_func=None, login_url='/index'):
 
     actual_decorator = user_passes_test(
@@ -145,11 +156,7 @@ def delete_car(request,id):
 
 
     
-@superuser_required    
-def view_all_sold_cars(request):
-    cars = SoldCars.objects.all()
-    context = {'cars':cars}
-    return render (request,'CarSalon_App/car/soldCars.html',context)
+
 
 
 @login_required
@@ -190,11 +197,13 @@ def receive_email_from_user(request):
 def error_404(request):
     return render(request,'CarSalon_App/error_handlers/404.html')    
 
-@superuser_required
+@logged_user
 def back_office_index (request):
      return render(request,'CarSalon_App/back_office/index.html')    
-
-
+def system_log_index(request):
+    logs = SystemLog.objects.all()
+    context= {'logs':logs}
+    return render(request,'CarSalon_App/back_office/system_log/index.html',context) 
 '''
 Rent Cars Views
 '''
@@ -265,7 +274,7 @@ def index_sell_car_request(request):
     return render(request,'CarSalon_App/back_office/sell_car/sell_request.html',context)   
 
 def sell_car(request,id):
-    if request.method == 'POST':
+   
         try:
             car = get_object_or_404(CarAstMar,id = id)
             initialCarQuantity = car.quantity
@@ -284,3 +293,30 @@ def sell_car(request,id):
         except Exception:
             messages.add_message(request, messages.INFO, 'Please Enter Valid Date .')
             return redirect('car/index') 
+
+
+@superuser_required    
+def view_all_sold_cars(request):
+    cars = SoldCars.objects.all()
+    context = {'cars':cars}
+    return render(request,'CarSalon_App/back_office/sell_car/sold_cars.html',context) 
+
+'''
+User's Views
+'''            
+
+def users_index(request):
+    users = MyUser.objects.all()
+    context = {'users':users}
+    return render(request,'CarSalon_App/back_office/users/index.html',context)   
+
+
+def edit_user(request,id):
+    user = get_object_or_404(MyUser,id = id)
+    context = {'user':user}
+    user.email = request.POST['startDate']
+    user.username = request.POST['startDate']
+    user.role = request.POST['startDate']
+    user.picture = request.POST['startDate']
+    user.save()
+    return render(request,'CarSalon_App/back_office/users/edit.html',context)  

@@ -32,9 +32,11 @@
       "topSpeed": "445",
       "zeroToHundredAcceleration": "4",
       "isForRent" : "False",
-      "isForRent" : "False",
+      "isRented" : "False",
       "description": "The Aston Martin DB9 GT is the most elegant expression of a sports grand tourer, its DNA echoing the iconic DB GT models of its lineage.",
-      "image": "http://cdn1.evo.co.uk/sites/evo/files/styles/gallery_adv/public/dsc_7949_48149.jpg?itok=d7-Qejh3"
+      "image": "http://cdn1.evo.co.uk/sites/evo/files/styles/gallery_adv/public/dsc_7949_48149.jpg?itok=d7-Qejh3",
+"sellingStatus":"Available"
+     
   }
 },
 
@@ -50,11 +52,12 @@
       "horsePowers": "550",
       "engineType": "V8 Diesel",
       "topSpeed": "545",
-      "isForRent" : "False",
-      "isForRent" : "False",
+      "isForRent" : "True",
+      "isRented" : "False",
       "zeroToHundredAcceleration": "3",
       "description": "Standard-bearer for an all-new generation of cars, DB11 is the most powerful and efficient ‘DB’production model in Aston Martin’s history. Available as a Coupe with the 5.2-litre twin-turbocharged V12 or the 4.0-litre twin-turbocharged V8 engine, DB11 takes our grand touring heritage to unprecedented heights. ",
-      "image": "https://www.dubaicars.com/uploads/newcars/1818_a0f5dcfad7b393c742355ef436cef603.jpg"
+      "image": "https://www.dubaicars.com/uploads/newcars/1818_a0f5dcfad7b393c742355ef436cef603.jpg",
+"sellingStatus":"Available"
   }
 },
 {
@@ -70,10 +73,11 @@
    "engineType": "V12 Petrolium",
    "topSpeed": "460",
    "isForRent" : "False",
-   "isForRent" : "False",
+   "isRented" : "False",
    "zeroToHundredAcceleration": "3",
    "description": "Some cars like to shout for attention but the DBS Volante has an effortless charisma. It is always centre stage but never overbearing and exudes the unique Aston Martin elegance. The Volante has an understated, timeless movie star quality.",
-   "image": "http://cdn.luxuo.com/2009/07/dbsvolante-1.jpg"
+   "image": "http://cdn.luxuo.com/2009/07/dbsvolante-1.jpg",
+"sellingStatus":"Available"
 }
 },
 {
@@ -88,11 +92,12 @@
    "horsePowers": "385",
    "engineType": "V8 Diesel",
    "topSpeed": "465",
-   "isForRent" : "False",
-   "isForRent" : "False",
+   "isForRent" : "True",
+   "isRented" : "False",
    "zeroToHundredAcceleration": "4",
    "description": "Building on the heritage and success of our flagship Grand Tourer comes the Aston Martin Vanquish S – bringing improved engine power, enhanced dynamics and all new styling to create a car of unprecedented ability. Vanquish S is the ultimate Super GT. ",
-   "image": "https://ag-spots-2017.o.auroraobjects.eu/2017/07/28/other/2880-1800-crop-aston-martin-vanquish-s-volante-2017-c549128072017174833_1.jpg"
+   "image": "https://ag-spots-2017.o.auroraobjects.eu/2017/07/28/other/2880-1800-crop-aston-martin-vanquish-s-volante-2017-c549128072017174833_1.jpg",
+"sellingStatus":"Available"
 }
 },
 {
@@ -108,10 +113,11 @@
    "engineType": "V12 Petrolium",
    "topSpeed": "455",
    "isForRent" : "False",
-   "isForRent" : "False",
+   "isRented" : "False",
    "zeroToHundredAcceleration": "5",
    "description": "The Vanquish Zagato Concept was unveiled to great acclaim at the prestigious Concorso Eleganza Villa Este at Lake Como, Italy in May 2016. Thanks to unprecedented customer interest, a strictly limited production run of 99 cars will be built to order at Aston Martin production facility in Gaydon, England",
-   "image": "https://www.conceptcarz.com/images/Aston%20Martin/Aston-Vanquish-Zagato-Volante-01-800.jpg"
+   "image": "https://www.conceptcarz.com/images/Aston%20Martin/Aston-Vanquish-Zagato-Volante-01-800.jpg",
+"sellingStatus":"Available"
 }
 },
 {
@@ -124,13 +130,14 @@
    "price": "4990000",
    "quantity": "4",
    "horsePowers": "665",
-   "isForRent" : "False",
-   "isForRent" : "False",
+   "isForRent" : "True",
+   "isRented" : "False",
    "engineType": "V12 Petrolium",
    "topSpeed": "665",
    "zeroToHundredAcceleration": "3",
    "description": "Introducing the Aston Martin Vulcan – a track-only supercar and our most intense and exhilarating creation to date.",
-   "image": "https://stmed.net/sites/default/files/aston-martin-vulcan-wallpapers-31820-3487015.jpg"
+   "image": "https://stmed.net/sites/default/files/aston-martin-vulcan-wallpapers-31820-3487015.jpg",
+   "sellingStatus":"Available"
 }
 }
 

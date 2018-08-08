@@ -250,7 +250,7 @@ def sell_car_request(request,id):
     car.sellingStatus = "Sell Request"
     car.save()
     sys_log(request,request.user,'create',datetime.datetime.now(),'Sell Request')
-    return redirect('/car/sell/index') 
+    return redirect('/car/sll/index') 
 @SalesManager_required
 def index_sell_car_request(request):
     cars = CarAstMar.objects.filter(sellingStatus = "Sell Request")

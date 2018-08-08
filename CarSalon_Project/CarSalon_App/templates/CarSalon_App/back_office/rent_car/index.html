@@ -5,8 +5,13 @@
 <link rel="stylesheet" type="text/css" href="../../../../static/css/modalForms.css">
 {% endblock customHead %}
 
+{% block aboveTableContent %}
+<div><a href="/car/rent/create"> Rent Car</a></div>
+
+{% endblock aboveTableContent %}
 
 {% block table %}
+
 
 
 <thead>
@@ -15,7 +20,7 @@
                 <th>Start Date:</th>
                 <th>End Date:</th>
                 <th>Employe:</th>
-                <th></th>
+                <th colspan="2"></th>
         </tr>
     </thead>
     <tbody>
@@ -28,11 +33,13 @@
                 <td>{{car.employeId.username}}</td>
                 <td>
                     <button id="btnDeleteRented" onclick="delete_rented_car({{car.id}})">Return Car</button>
-                    </td>
+                </td>
+                <td>
+                    <a href="/car/rent/edit/{{car.id}}">Edit</a>
+                </td>
         </tr>
       
     </tbody>
-
 
 
     

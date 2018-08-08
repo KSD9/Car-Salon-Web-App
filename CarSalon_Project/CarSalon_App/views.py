@@ -4,45 +4,22 @@ from django.contrib.auth.models import User
 from .models import CarAstMar,SoldCars,Appointment,MyUser,SystemLog,RentedCars
 from django.shortcuts import get_list_or_404, get_object_or_404
 from .services.emailSender import send_appointment_email,send_info_email
+from .services.decorators import logged_user , superuser_required , RentManager_required , SalesManager_required 
 from django.contrib.auth.decorators import login_required , user_passes_test
 from django.contrib import messages
 from django.http import HttpResponse , HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import FileSystemStorage
 import datetime
 
-# Custom Decorator To Check If Logged User Has Admin Rights
-def logged_user(view_func=None, login_url='/login'):
-
-    actual_decorator = user_passes_test(
-        lambda u: u.is_active,
-        login_url=login_url,
-    )
-    if view_func:
-        return actual_decorator(view_func)
-    return actual_decorator
 
 
-def superuser_required(view_func=None, login_url='/index'):
 
-    actual_decorator = user_passes_test(
-        lambda u: u.is_active and u.is_superuser,
-        login_url=login_url,
-    )
-    if view_func:
-        return actual_decorator(view_func)
-    return actual_decorator
 
-def RentManager_required(view_func=None, login_url='/index'):
-
-    actual_decorator = user_passes_test(
-        lambda u: u.is_active and u.role == 'RentManager',
-        login_url=login_url,
-    )
-    if view_func:
-        return actual_decorator(view_func)
-    return actual_decorator   
-
+def error_404_view(request, exception):
+    
+    return render(request,'CarSalon_App/error_handlers/404.html')
 
 def sys_log(request,user,action,dateTime,model):
     sysLog = SystemLog(
@@ -65,10 +42,7 @@ def register(request):
         form = RegisterForm(request.POST, request.FILES )
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
+           
             return redirect("/index")
         messages.add_message(request, messages.INFO,form._errors)
     else:
@@ -136,6 +110,7 @@ def edit_car(request,id):
         carToEdit.image = request.POST['image']
         carToEdit.description = request.POST['description']
         carToEdit.save()
+        sys_log(request,request.user,'edit',datetime.datetime.now(),'car')
         return redirect('/car/index')
     return render (request,'CarSalon_App/car/edit.html',context)
 
@@ -151,6 +126,7 @@ def delete_car_confirmation(request,id):
 def delete_car(request,id):
     carToDelete = get_object_or_404(CarAstMar,id = id)
     carToDelete.delete()
+    sys_log(request,request.user,'delete',datetime.datetime.now(),'car')
     return redirect('/car/index')
 
 
@@ -168,6 +144,7 @@ def create_appointment(request,id):
         car = get_object_or_404(CarAstMar,id = id)
         appointment = Appointment(startDate = request.POST['startDate'],userId = request.user , carId = car )
         appointment.save()
+        sys_log(request,request.user,'create',datetime.datetime.now(),'appointment')
       
         app = appointment.carId.model
         user = appointment.userId.first_name
@@ -183,7 +160,7 @@ def create_appointment(request,id):
 def  view_all_appointments(request):
     appoinments = Appointment.objects.all()
     context = {'appointments':appoinments}
-    return render (request,'CarSalon_App/appointment/index.html',context)
+    return render (request,'CarSalon_App/back_office/appointment/index.html',context)
 
 @login_required    
 def appointment_booked(request):
@@ -207,11 +184,15 @@ def system_log_index(request):
 '''
 Rent Cars Views
 '''
+@RentManager_required
+
 def rent_cars_index(request):
     cars = RentedCars.objects.all()
+    
     context = {'cars':cars}
     return render(request,'CarSalon_App/back_office/rent_car/index.html',context)   
 
+@RentManager_required
 def create_car_for_rent(request):
     cars = CarAstMar.objects.filter(isRented = False , isForRent=True)
     context = {'cars':cars}
@@ -221,11 +202,12 @@ def create_car_for_rent(request):
         rentCar.save()
         carModel.isRented = True
         carModel.save()
+        sys_log(request,request.user,'create',datetime.datetime.now(),'rentCar')
         return redirect('/car/rent/index') 
     else:
         return render(request,'CarSalon_App/back_office/rent_car/create.html',context)   
 
-
+@RentManager_required
 def edit_car_for_rent(request,id):
     car = get_object_or_404(RentedCars,id = id)
     context = {'car':car}
@@ -233,11 +215,12 @@ def edit_car_for_rent(request,id):
         car.startDate = request.POST['startDate']
         car.endDate   = request.POST['endDate']
         car.save()
+        sys_log(request,request.user,'edit',datetime.datetime.now(),'rentCat')
         return redirect('/car/rent/index') 
     else:
         return render(request,'CarSalon_App/back_office/rent_car/edit.html',context)
 
-
+@RentManager_required
 def delete_rent_car(request,id):
     car = get_object_or_404(RentedCars,id = id)
     if request.method == 'POST':
@@ -246,6 +229,7 @@ def delete_rent_car(request,id):
         carAst = CarAstMar.objects.get(id = carId)
         carAst.isRented = False
         carAst.save()
+        sys_log(request,request.user,'return',datetime.datetime.now(),'rentCar')
         return redirect('/car/rent/index') 
     else:
         return render(request,'CarSalon_App/back_office/rent_car/index.html')
@@ -254,25 +238,27 @@ def delete_rent_car(request,id):
 '''
 Sell Car Views
 '''
-
+@SalesManager_required
 def sell_car_index(request):
     cars = CarAstMar.objects.filter(isForRent = False)
     context = {'cars':cars}
 
     return render(request,'CarSalon_App/back_office/sell_car/index.html',context)   
-
+@SalesManager_required
 def sell_car_request(request,id):
     car = get_object_or_404(CarAstMar,id = id)
     car.sellingStatus = "Sell Request"
     car.save()
+    sys_log(request,request.user,'create',datetime.datetime.now(),'Sell Request')
     return redirect('/car/sell/index') 
-
+@SalesManager_required
 def index_sell_car_request(request):
     cars = CarAstMar.objects.filter(sellingStatus = "Sell Request")
     context = {'cars':cars}
 
     return render(request,'CarSalon_App/back_office/sell_car/sell_request.html',context)   
 
+@SalesManager_required
 def sell_car(request,id):
    
         try:
@@ -285,6 +271,7 @@ def sell_car(request,id):
                 car.quantity = initialCarQuantity - soldCar.quantity
                 car.sellingStatus = "Sold"
                 car.save()
+                sys_log(request,request.user,'create',datetime.datetime.now(),'Sell Car')
                 return redirect('/car/sold')
             else:
                 messages.add_message(request, messages.INFO, 'Not Enough Amount .')
@@ -304,19 +291,28 @@ def view_all_sold_cars(request):
 '''
 User's Views
 '''            
-
+@superuser_required
 def users_index(request):
     users = MyUser.objects.all()
     context = {'users':users}
     return render(request,'CarSalon_App/back_office/users/index.html',context)   
-
-
-def edit_user(request,id):
+@superuser_required
+def show_user(request,id):
     user = get_object_or_404(MyUser,id = id)
     context = {'user':user}
-    user.email = request.POST['startDate']
-    user.username = request.POST['startDate']
-    user.role = request.POST['startDate']
-    user.picture = request.POST['startDate']
-    user.save()
     return render(request,'CarSalon_App/back_office/users/edit.html',context)  
+
+@superuser_required
+def edit_user(request,id):
+    user = get_object_or_404(MyUser,id = id)
+    if request.method == 'POST' and request.FILES['image']:
+        user.email = request.POST['email']
+        user.username = request.POST['username']
+        user.role = request.POST['role']
+        img = request.FILES['image']
+        fs = FileSystemStorage()
+        filename = fs.save(img.name, img)
+        uploaded_file_url = fs.url(filename)
+        user.image = filename
+        user.save()
+        return redirect('/user/index')

@@ -1,0 +1,56 @@
+{% extends "../index.html" %}
+
+{% block customContent %}
+
+<form method="post" action="/usr/edit/{{user.id}}" enctype="multipart/form-data">
+    <h1>Edit User</h1>
+    
+    
+    {% csrf_token %}
+    
+    
+    <div class="form-group">
+        
+        <label for="username">Username:</label>
+        <br> <input type="text" name="username" value="{{user.username}}" required autofocus maxlength="150" id="username" />
+    </div>
+    
+    <div class="form-group">
+        
+        <label for="email">Email:</label>
+        <br> <input type="email" name="email" value = "{{user.email}}"required maxlength="254" id="id_email" />
+    </div>
+    
+   
+    
+    
+    <div class="form-group">
+        
+        <label for="id_role">Role:</label>
+        <br> <select name="role" required id="role" >
+            <option value="{{user.role}}" selected> {{user.role}}</option>
+            
+            <option value="RentManager">Rent Manager</option>
+            
+            <option value="SalesManager">Sales Manager</option>
+            
+            <option value="Administrator">Administrator</option>
+            
+            <option value="SuperUser">Super User</option>
+            
+        </select>
+    </div>
+    
+    <div class="form-group">
+        
+        <label for="id_image">Image:</label>
+        <br> <input type="file" name="image"  id="image" required />
+    </div>
+    
+    
+    <div class="form-group">
+        <button type="submit" class="btn-signin">Edit</button>
+    </div>
+</form>
+
+{% endblock customContent %}

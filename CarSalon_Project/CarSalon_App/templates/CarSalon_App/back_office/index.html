@@ -62,32 +62,49 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
 
-
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
+                            {%if user.role == "SalesManager" or user.role == "Administrator"  or user.is_superuser%}
+                            <li>
+                                <a href="/car/sll/index">
+                                    <i class="far fa-check-square"></i>Sell Cars</a>
+                            </li>
+                            {%endif%}
+    
+                            {%if user.role == "RentManager" or user.role == "Administrator"  or user.is_superuser%}
+                                <li>
+                                        <a href="/car/rent/index">
+                                            <i class="far fa-check-square"></i>Rent Cars</a>
+                                    </li>
+                            {%endif%}
+                            {%if  user.role == "Administrator"  or user.is_superuser%}
+                            
+                            <li>
+                                <a href="/car/request">
+                                    <i class="far fa-check-square"></i>Sell Requests</a>
+                            </li>
+                        {%endif%}
+    
+                        {%if user.is_superuser%}
+                            
+                        
+                                    <li>
+                                        <a href="/car/sold">
+                                            <i class="far fa-check-square"></i>Sold Cars</a>
+                                    </li>
+            
+                                    <li>
+                                        <a href="/user/index">
+                                            <i class="far fa-check-square"></i>Users</a>
+                                    </li>
+                                    <li>
+                                        <a href="/sysLog/index">
+                                            <i class="far fa-check-square"></i>System Log</a>
+                                    </li>
+                                    <li>
+                                        <a href="/appointment/index">
+                                            <i class="far fa-check-square"></i>Appointments</a>
+                                    </li>
+                                    {%endif%}
+    
 
 
                     </ul>
@@ -106,24 +123,35 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
+                        {%if user.role == "SalesManager" or user.role == "Administrator"  or user.is_superuser%}
+                        <li>
+                            <a href="/car/sll/index">
+                                <i class="far fa-check-square"></i>Sell Cars</a>
+                        </li>
+                        {%endif%}
 
+                        {%if user.role == "RentManager" or user.role == "Administrator"  or user.is_superuser%}
                             <li>
                                     <a href="/car/rent/index">
                                         <i class="far fa-check-square"></i>Rent Cars</a>
                                 </li>
-                                <li>
-                                    <a href="/car/sll/index">
-                                        <i class="far fa-check-square"></i>Sell Cars</a>
-                                </li>
+                        {%endif%}
+                        {%if  user.role == "Administrator"  or user.is_superuser%}
+                        
+                        <li>
+                            <a href="/car/request">
+                                <i class="far fa-check-square"></i>Sell Requests</a>
+                        </li>
+                    {%endif%}
+
+                    {%if user.is_superuser%}
+                        
+                    
                                 <li>
                                     <a href="/car/sold">
                                         <i class="far fa-check-square"></i>Sold Cars</a>
                                 </li>
         
-                                <li>
-                                    <a href="/car/request">
-                                        <i class="far fa-check-square"></i>Sell Requests</a>
-                                </li>
                                 <li>
                                     <a href="/user/index">
                                         <i class="far fa-check-square"></i>Users</a>
@@ -132,6 +160,11 @@
                                     <a href="/sysLog/index">
                                         <i class="far fa-check-square"></i>System Log</a>
                                 </li>
+                                <li>
+                                    <a href="/appointment/index">
+                                        <i class="far fa-check-square"></i>Appointments</a>
+                                </li>
+                                {%endif%}
 
                     </ul>
                 </nav>
@@ -163,31 +196,27 @@
                                     <div class="account-wrap">
                                         <div class="account-item clearfix js-item-menu">
                                             <div class="image">
-                                                <img src="../../../static/images/static/images/bill-gates.jpg" alt="John Doe" />
+                                                <img src="../../../static/images/{{user.image}}" alt="John Doe" />
                                             </div>
                                             <div class="content">
-                                                <a class="js-acc-btn" href="#">john doe</a>
+                                                <a class="js-acc-btn" href="#">{{user.username}}</a>
                                             </div>
                                             <div class="account-dropdown js-dropdown">
                                                 <div class="info clearfix">
                                                     <div class="image">
                                                         <a href="#">
-                                                            <img src="../../../static/images/static/images/bill-gates.jpg" alt="John Doe" />
+                                                            <img src="../../../static/images/{{user.image}}" alt="Joshn Doe" />
                                                         </a>
                                                     </div>
                                                     <div class="content">
                                                         <h5 class="name">
-                                                            <a href="#">john doe</a>
+                                                            <a href="#">{{user.username}}</a>
                                                         </h5>
-                                                        <span class="email">johndoe@example.com</span>
+                                                        <span class="email">{{user.email}}</span>
                                                     </div>
                                                 </div>
                                                 <div class="account-dropdown__body">
 
-                                                    <div class="account-dropdown__item">
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                    </div>
 
                                                 </div>
                                                 <div class="account-dropdown__footer">
@@ -210,17 +239,24 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
+                            {% block aboveTableContent %}
+                            
+                            {% endblock aboveTableContent %}
+                        </div>
+                        <div class="row">
                             {% block customContent %}
 
                             <div class="col-lg-9">
                                 <div class="table-responsive table--no-card m-b-30">
                                     <table class="table table-borderless table-striped table-earning">
-                                        {% block table %} {% endblock table %}
+                                        {% block table %} 
+                                        {% endblock table %}
                                     </table>
 
 
                                 </div>
                             </div>
+                          
                             {% endblock customContent %}
 
                         </div>

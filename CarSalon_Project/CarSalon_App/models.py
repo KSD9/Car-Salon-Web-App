@@ -13,7 +13,7 @@ user_roles = (
 )
 class MyUser(AbstractUser):
     role  = models.CharField(max_length = 300, choices = user_roles )
-    image = models.ImageField(upload_to = 'uploaded/') #default ='image')        
+    image = models.ImageField(upload_to = '') #default ='image')        
 
 class CarAstMar(models.Model):
     objects                   = models.Manager()

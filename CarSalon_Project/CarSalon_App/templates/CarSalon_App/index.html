@@ -43,17 +43,7 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right main-navigation">
-                    {% if user.is_superuser %}
-                    <li>
-                        <a href="/users" class="smoothScroll">Users</a>
-                    </li>
-                    <li>
-                        <a href="/appointment/index" class="smoothScroll">Appointments</a>
-                    </li>
-                    <li>
-                        <a href="/car/sold" class="smoothScroll">Sold Cars</a>
-                    </li>
-                    {%endif%} 
+                    
                     
                     {% if user.is_authenticated %}
                     <li>

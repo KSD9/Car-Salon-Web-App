@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path,include
 
 
+
 urlpatterns = [
     
     path('', include('CarSalon_App.urls'))
 ]
+
+handler404 = 'CarSalon_App.views.error_404_view'

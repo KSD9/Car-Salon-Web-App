@@ -1,7 +1,7 @@
 from django.urls import path
 from CarSalon_App import views
 from django.contrib.auth import views as auth_views
-from django.conf.urls import handler404,handler500
+
 
 urlpatterns = [
 # App Entry Urls
@@ -21,7 +21,7 @@ urlpatterns = [
     path('car/deleteConfirm/<id>', views.delete_car_confirmation,   name="deleteCarConfimr"),
     path('car/delete/<id>',        views.delete_car,                name="deleteCar"),
     path('car/index',              views.view_all_cars,             name="cars"),
-    path('car/sell/<id>',         views.sell_car,                  name="sellCar"),
+    path('car/sell/<id>',          views.sell_car,                  name="sellCar"),
     path('car/sold',               views.view_all_sold_cars,        name="soldCars"),
 
 # Rent Cars Views
@@ -46,8 +46,9 @@ urlpatterns = [
 
 #Users Views
     path('user/index', views.users_index,name="users"),
+     path('user/edit/<id>', views.show_user,name="editUSer"),
+     path('usr/edit/<id>',views.edit_user,name="asd"),
     path('sysLog/index', views.system_log_index , name="logs")
 
 ]
 
-handler404 = views.error_404

@@ -1,5 +1,11 @@
 {% extends "../index.html" %}
 
+{% block aboveTableContent %}
+
+<div><a href="/register"> Add New User</a></div>
+
+{% endblock aboveTableContent %}
+
 {% block table %}
 <thead>
     <tr>
@@ -9,6 +15,7 @@
         <th>Last Name</th>
         <th>Role</th>
         <th>Picture</th>
+        <th></th>
     </tr>
 </thead>
 <tbody>
@@ -20,8 +27,12 @@
        <td>{{user.last_name}}</td>
        <td>{{user.role}}</td>
        <td><img src="../../../../static/images/{{user.image}}" alt="user picture" height="35" width="35"></td>
+       <td><a href ="/user/edit/{{user.id}}">Edit</a></td>
 
     </tr>
     {%endfor%}
 </tbody>
+
+
+
 {% endblock table %}

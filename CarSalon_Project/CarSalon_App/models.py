@@ -8,7 +8,7 @@ user_roles = (
 ('RentManager','Rent Manager'),
 ('SalesManager','Sales Manager'),
 ('Administrator','Administrator'),
-('SuperUser','Super User')
+
 
 )
 class MyUser(AbstractUser):
@@ -36,7 +36,8 @@ class CarAstMar(models.Model):
 class Appointment(models.Model):
     objects                   = models.Manager()
     startDate                 = models.DateTimeField()
-    userId                    = models.ForeignKey (MyUser,on_delete=models.CASCADE , related_name="usersApp")
+    name                      = models.CharField(max_length = 300)
+    email                     = models.EmailField()
     carId                     = models.ForeignKey (CarAstMar,on_delete=models.CASCADE , related_name="carsApp")
 
 

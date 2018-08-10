@@ -6,16 +6,19 @@
 <thead>
     <tr>
         <th>Date</th>
-        <th>User</th>
+        <th>Name</th>
         <th>Model</th>
+        <th>Email</th>
     </tr>
 </thead>
 <tbody>
     {%for appointment in appointments%}
     <tr>
         <td>{{appointment.startDate}}</td>
-        <td>{{appointment.userId.username}}</td>
+        <td>{{appointment.name}}</td>
         <td>{{appointment.carId.model}}</td>
+        <td>{{appointment.email}}</td>
+
     </tr>
     {%endfor%}
 </tbody>

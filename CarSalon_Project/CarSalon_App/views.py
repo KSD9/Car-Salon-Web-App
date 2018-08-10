@@ -80,9 +80,10 @@ def add_car(request):
          engineType = request.POST['dropdown_engineType'],
          topSpeed = request.POST['topSpeed'],
          zeroToHundredAcceleration = request.POST['zeroToHundredAcceleration'],
-         image = request.POST['image'],
+         image = request.FILES['image'],
          description = request.POST['description'],
-        )             
+        )
+
         car.save()
         sys_log(request,request.user,'create',datetime.datetime.now(),'car')
         return redirect('/car/index')
@@ -107,7 +108,13 @@ def edit_car(request,id):
         carToEdit.engineType = request.POST['dropdown_engineType']
         carToEdit.topSpeed = request.POST['topSpeed']
         carToEdit.zeroToHundredAcceleration = request.POST['zeroToHundredAcceleration']
-        carToEdit.image = request.POST['image']
+        img = request.FILES.get('image',False)
+        if not img:
+            carToEdit.image = carToEdit.image
+        else:    
+            fs = FileSystemStorage()
+            filename = fs.save(img.name, img)
+            carToEdit.image = filename
         carToEdit.description = request.POST['description']
         carToEdit.save()
         sys_log(request,request.user,'edit',datetime.datetime.now(),'car')
@@ -135,23 +142,21 @@ def delete_car(request,id):
 
 
 
-@login_required
 def create_appointment(request,id):
      if request.method == 'POST':
         adminEmail  = 'rushhourapp9@gmail.com'
         adminPass   = "!e123456789"
 
         car = get_object_or_404(CarAstMar,id = id)
-        appointment = Appointment(startDate = request.POST['startDate'],userId = request.user , carId = car )
+        appointment = Appointment(startDate = request.POST['startDate'],name = request.POST['name'],email = request.POST['email'], carId = car )
         appointment.save()
-        sys_log(request,request.user,'create',datetime.datetime.now(),'appointment')
       
         app = appointment.carId.model
-        user = appointment.userId.first_name
+        user = appointment.name
         date = str(request.POST['startDate'])
         emailText = 'Hello '+ user + ' ,You have booked a test drive for : '+  date + 'To try Aston Martin: '+ app
 
-        send_appointment_email(adminEmail,adminPass,request.user.email,'New Appointment',emailText)
+        send_appointment_email(adminEmail,adminPass,appointment.email,'New Appointment',emailText)
         return render(request,'CarSalon_App/appointment/appBooked.html')
      else:
 
@@ -161,8 +166,7 @@ def  view_all_appointments(request):
     appoinments = Appointment.objects.all()
     context = {'appointments':appoinments}
     return render (request,'CarSalon_App/back_office/appointment/index.html',context)
-
-@login_required    
+ 
 def appointment_booked(request):
     return render(request,'CarSalon_App/appointments/appBooked.html')    
 
@@ -250,7 +254,7 @@ def sell_car_request(request,id):
     car.sellingStatus = "Sell Request"
     car.save()
     sys_log(request,request.user,'create',datetime.datetime.now(),'Sell Request')
-    return redirect('/car/sll/index') 
+    return redirect('/car/sell/index') 
 @SalesManager_required
 def index_sell_car_request(request):
     cars = CarAstMar.objects.filter(sellingStatus = "Sell Request")
@@ -279,7 +283,7 @@ def sell_car(request,id):
 
         except Exception:
             messages.add_message(request, messages.INFO, 'Please Enter Valid Date .')
-            return redirect('car/index') 
+            return redirect('/car/index') 
 
 
 @superuser_required    
@@ -305,14 +309,16 @@ def show_user(request,id):
 @superuser_required
 def edit_user(request,id):
     user = get_object_or_404(MyUser,id = id)
-    if request.method == 'POST' and request.FILES['image']:
+    if request.method == 'POST' :
         user.email = request.POST['email']
         user.username = request.POST['username']
         user.role = request.POST['role']
-        img = request.FILES['image']
-        fs = FileSystemStorage()
-        filename = fs.save(img.name, img)
-        uploaded_file_url = fs.url(filename)
-        user.image = filename
+        img = request.FILES.get('image',False)
+        if not img:
+            user.image = user.image
+        else:    
+            fs = FileSystemStorage()
+            filename = fs.save(img.name, img)
+            user.image = filename
         user.save()
         return redirect('/user/index')

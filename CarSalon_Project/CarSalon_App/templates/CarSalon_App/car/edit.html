@@ -24,7 +24,7 @@
         <div class="container">
             <div class="row">
                 <div class="newsletter_detail">
-                    <form action="/car/edit/{{car.id}}" method="post">
+                    <form action="/car/edit/{{car.id}}" method="post" enctype="multipart/form-data">
                         <h1>Edit Car</h1>
                         {% csrf_token %}
                         <label for="password">Model:</label>
@@ -73,7 +73,7 @@
 
                         <label for="password">Image :</label>
                         <div class="form-group">
-                            <input type="text" id="image" name="image" class="form-control" value="{{car.image}}" required>
+                                <input type="file" name="image"  id="image"  />  
                         </div>
                         <label for="password">Description :</label>
                         <div class="form-group">

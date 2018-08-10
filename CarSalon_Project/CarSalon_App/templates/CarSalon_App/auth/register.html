@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="newsletter_detail">
-                    <form method="post" enctype="multipart/form-data">
+                    <form method="post" id = "regForm" enctype="multipart/form-data">
                         <h1>REGISTER</h1>
                         {% if messages %} 
                         {% for message in messages %}
@@ -40,7 +40,30 @@
 
     {% block customScripts %}
  
+    <script src="../../../static/js/jquery.validate.js"></script>
+    <script>
+$ (function(){
+$("#regForm").validate({
+    rules:{
+        username:{
+            required:true,
+            minlength:4,
+        },
+        password1 : {
+            minlength : 8
+        },
+        password2 : {
+            minlength : 8,
+            equalTo : "#id_password1"
+        },
+        email:{
+            required:true,
+        }
+    }
+});
+});
 
+    </script>
     {% endblock customScripts %}
 
 

@@ -56,7 +56,7 @@
                                     <div class="two-sixth">
                                         <div class="content-img gkResponsive">
                                             <a data-lightbox href="#">
-                                                <img class="alignnone size-full wp-image-506" src="{{car.image}}" alt="CarImage"
+                                                <img class="alignnone size-full wp-image-506" src="../../../static/images/{{car.image}}" alt="CarImage"
                                                     width="664" height="1000" /> </a>
                                         </div>
                                         <div class="serviceinfotitle">
@@ -174,7 +174,7 @@
                                                     </p>
                                                     <div class='text   center'>
 
-                                                        {% if user.is_authenticated %}
+                                                        
                                                         <button id="btnTestDrive">Book Test Drive</button>
 
                                                         <div id="mTestDrive" class="modalTestDrive">
@@ -189,34 +189,24 @@
                                                                     <div class="form-group">
                                                                         <input type="datetime" id="startDate" name="startDate" required>
                                                                     </div>
+                                                                    <label for="name">Name:</label>
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="name" name="name" required>
+                                                                    </div>
+                                                                    <label for="name">Email:</label>
+                                                                    <div class="form-group">
+                                                                        <input type="email" id="email" name="email" required>
+                                                                    </div>
 
                                                                     <div class="form-group">
-                                                                        <button type="submit" value="Create" class="btn-signin">Add</button>
+                                                                        <button type="submit" value="Create" class="btn-signin">Book</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                         </div>
-                                                        {%endif%} 
+                                                        
 
-                                                        {% if user.is_superuser %}
-                                                        <button id="btnSellCar">Sell Car</button>
-                                                        <div id="mSellCar" class="modalSellCar">
-                                                            <div class="modalSellCar-content">
-                                                                <span class="closeSellCar">&times;</span>
-                                                                <form action="/car/sell/{{car.id}}" method="post">
-                                                                    <h1>Sell Carr</h1>
-                                                                    {% csrf_token %}
-                                                                    <label for="name">Quantity</label>
-                                                                    <div class="form-group">
-                                                                        <input type="number" id="quantity" name="quantity" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <button type="submit" value="Create" class="btn-signin">Add</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                        {%endif%}
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -319,31 +309,11 @@
                 modalTestDrive.style.display = "none";
             }
 
-            // When the user clicks anywhere outside of the modal, close it
-
-            // Get the modal
-            var modalSellCar = document.getElementById('mSellCar');
-
-            // Get the button that opens the modal
-            var btnSellCar = document.getElementById("btnSellCar");
-
-            // Get the <span> element that closes the modal
-            var spanSellCar = document.getElementsByClassName("closeSellCar")[0];
-
-            // When the user clicks the button, open the modal 
-            btnSellCar.onclick = function () {
-                modalSellCar.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            spanSellCar.onclick = function () {
-                modalSellCar.style.display = "none";
-            }
-
+           
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function (event) {
-                if (event.target == modalSellCar || event.target == modalTestDrive) {
-                    modalSellCar.style.display = "none";
+                if ( event.target == modalTestDrive) {
+                   
                     modalTestDrive.style.display = "none";
                 }
             }

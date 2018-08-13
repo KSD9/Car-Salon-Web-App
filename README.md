@@ -11,27 +11,37 @@
 - Initial Admin Credentials are : Username- admin | Pass- ie123456
 - After that run the project by using:
 - python3 manage.py runserver
+- To use the back office of the system , just type /admin in your browser.
  
 
 
-# Roles: User, Admin, Not Logged User
+# Roles: Super User (System Owner),Administrator,Sales Manager,Rent Manager, Not Logged User
 
 # Not Logged User:
 - Can see all the cars
 - Can see details about a car
 - Can send information emails
+- Can book test drives for a car
 
-# User charectaristics:
-- Can create test drives for cars
-
-# Admin charectaristics:
+# Super User (System Owner) charectaristics:
 - Can see all the users
 - Can delete users
 - Can see all the Cars
 - Can create Cars
 - Can update Cars
 - Can delete Cars
+- Can sell cars
+
+# Administrator charectaristics:
+- Can make sell car requests
+- Can make rent car requests
 
 
+
+# Sales Manager charectaristics:
+- Can make sell car requests
+
+# Rent Manager charectaristics:
+- Can make rent car requests
 
 

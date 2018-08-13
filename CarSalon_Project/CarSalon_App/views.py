@@ -248,13 +248,14 @@ def sell_car_index(request):
     context = {'cars':cars}
 
     return render(request,'CarSalon_App/back_office/sell_car/index.html',context)   
+
 @SalesManager_required
 def sell_car_request(request,id):
     car = get_object_or_404(CarAstMar,id = id)
     car.sellingStatus = "Sell Request"
     car.save()
     sys_log(request,request.user,'create',datetime.datetime.now(),'Sell Request')
-    return redirect('/car/sell/index') 
+    return redirect('/car/sll/index') 
 @SalesManager_required
 def index_sell_car_request(request):
     cars = CarAstMar.objects.filter(sellingStatus = "Sell Request")

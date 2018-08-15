@@ -1,8 +1,8 @@
 # ProjectName: Aston Martin Car Salon Web App
- Django 2.0 + Python 3 
+ Django 2.1 + Python 3 
 
 # To run the app:
-- You must have Python 3 and Django 2.0 installed.
+- You must have Python 3 and Django 2.1 installed.
 - Clone project repository
 - Open folder CarSalon_App_project , and run the following commands:
 - Important ! Run This Command In Your Teminal Only Once To Initialize The Project Files:

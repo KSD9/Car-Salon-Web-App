@@ -75,6 +75,14 @@
                         <div class="form-group">
                                 <input type="file" name="image"  id="image"  />  
                         </div>
+                        {% if car.isForRent%}
+                        {%else%}
+                        <label for="password">Make This Car  Rental  :</label>
+                        <div class="form-group">
+                                <input type="checkbox" name="isForRent"  id="isForRent" value="True" />  
+                        </div>
+                        {%endif%}
+
                         <label for="password">Description :</label>
                         <div class="form-group">
                             <input type="text" id="description" name="description" class="form-control" value="{{car.description}}" required>

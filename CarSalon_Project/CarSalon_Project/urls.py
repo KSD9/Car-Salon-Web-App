@@ -20,7 +20,8 @@ from django.urls import path,include
 
 urlpatterns = [
     
-    path('', include('CarSalon_App.urls'))
+    path('', include('CarSalon_App.urls')),
+    path('',include ('django.contrib.auth.urls'))
 ]
 
 handler404 = 'CarSalon_App.views.error_404_view'

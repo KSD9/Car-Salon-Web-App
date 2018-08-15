@@ -9,10 +9,10 @@ urlpatterns = [
     path('index',                  views.application_index,         name ="index"),
 
 #Auth Views
-    path('login/',                 auth_views.login, {'template_name': 'CarSalon_App/auth/login.html'},  name='login'),
+    path('login/',                 auth_views.LoginView.as_view    (template_name= 'CarSalon_App/auth/login.html' )),
     path('register/',              views.register,                  name='login'),
     path('users',                  views.view_all_users,            name='usrs'),
-    path('logout/',                auth_views.logout,  {'next_page': '/index'},                          name='logout'),
+    path('logout/',                auth_views.LogoutView.as_view    (next_page='/index')),
 
 #Car Views
     path('car/create',             views.add_car,                   name="addCar"),
@@ -31,9 +31,9 @@ urlpatterns = [
     path('car/rent/delete/<id>',   views.delete_rent_car,           name="rentedCars"),
 
 # Sell Cars Views    
-    path('car/sll/index',         views.sell_car_index,             name="sellCars"),
+    path('car/sll/index',          views.sell_car_index,             name="sellCars"),
     path('car/sell/request/<id>',  views.sell_car_request,           name="sellCars"),
-    path('car/request', views.index_sell_car_request,           name="sellCars"),
+    path('car/request',            views.index_sell_car_request,           name="sellCars"),
 
 
 #Appointment Views
@@ -45,10 +45,10 @@ urlpatterns = [
     path('admin/',                  views.back_office_index),
 
 #Users Views
-    path('user/index', views.users_index,name="users"),
-     path('user/edit/<id>', views.show_user,name="editUSer"),
-     path('usr/edit/<id>',views.edit_user,name="asd"),
-    path('sysLog/index', views.system_log_index , name="logs")
+    path('user/index',              views.users_index,name="users"),
+    path('user/edit/<id>',          views.show_user,name="editUSer"),
+    path('usr/edit/<id>',           views.edit_user,name="asd"),
+    path('sysLog/index',            views.system_log_index , name="logs")
 
 ]
 

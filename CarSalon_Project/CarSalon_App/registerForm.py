@@ -6,8 +6,13 @@ from django.contrib.auth.models import User
 
 
 class RegisterForm(UserCreationForm):
-   
+    user_roles = (
+('RentManager','Rent Manager'),
+('SalesManager','Sales Manager'),
+('Administrator','Administrator'),
+    )
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    role = forms.ChoiceField(choices=user_roles)
 
     class Meta(UserCreationForm.Meta):
         model = MyUser

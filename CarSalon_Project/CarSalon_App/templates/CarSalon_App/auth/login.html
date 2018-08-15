@@ -8,6 +8,10 @@
         <div class="container">
             <div class="row">
                 <div class="newsletter_detail">
+
+                    {%if user.is_authenticated%}
+                    <p>You are already logged, please logout first</p>
+                    {%else%}
                         <form method="post" id="loginForm">
                             <h1>Login</h1>
                             {% csrf_token %} 
@@ -16,6 +20,7 @@
                                 <button type="submit" class="btn-signin">Let me in </button>
                             </div>
                         </form>
+                        {%endif%}
                 </div>
             </div>
         </div>

@@ -81,6 +81,7 @@ def add_car(request):
          topSpeed = request.POST['topSpeed'],
          zeroToHundredAcceleration = request.POST['zeroToHundredAcceleration'],
          image = request.FILES['image'],
+         isForRent = request.POST.get('isForRent',False),
          description = request.POST['description'],
         )
 
@@ -109,12 +110,21 @@ def edit_car(request,id):
         carToEdit.topSpeed = request.POST['topSpeed']
         carToEdit.zeroToHundredAcceleration = request.POST['zeroToHundredAcceleration']
         img = request.FILES.get('image',False)
+        rentStatus = request.POST.get('isForRent',False)
         if not img:
             carToEdit.image = carToEdit.image
+            #carToEdit.isForRent = carToEdit.isForRent
         else:    
             fs = FileSystemStorage()
             filename = fs.save(img.name, img)
             carToEdit.image = filename
+            #carToEdit.isForRent = rentStatus
+
+
+        if not rentStatus:
+             carToEdit.isForRent = carToEdit.isForRent
+        else:
+             carToEdit.isForRent = rentStatus             
         carToEdit.description = request.POST['description']
         carToEdit.save()
         sys_log(request,request.user,'edit',datetime.datetime.now(),'car')

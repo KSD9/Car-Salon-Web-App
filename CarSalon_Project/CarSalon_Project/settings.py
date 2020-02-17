@@ -28,8 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = ["127.0.0.1"]
 AUTH_USER_MODEL = 'CarSalon_App.MyUser'
 
-MEDIA_URL = '/static/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'CarSalon_App/static/images')
+MEDIA_URL = '/media/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'CarSalon_App/media/images')
 
 # Application definition
 

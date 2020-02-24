@@ -1,8 +1,8 @@
 # ProjectName: Aston Martin Car Salon Web App
  Django 2.2 + Python 3 
 
-#Live example
-- http://uniexample.touchpython.com/index
+# Live example
+http://uniexample.touchpython.com/index
 
 # To run the app:
 - You must have Python 3 and Django 2.2 installed.
